@@ -46,7 +46,7 @@
 
 <script>
   export default {
-    name: 'hello',
+    name: 'live_drawing_room',
     sockets: {
       connect: function () {
         console.log('connected')
@@ -97,7 +97,7 @@
         const y = event.pageY - this.canvas.offsetTop
         const colorCode = this.canvasContext.strokeStyle
 
-        console.log(colorCode)$
+        console.log(colorCode)
         this.canvasContext.moveTo(x, y)
         this.saveLatestDrawingData(x, y, colorCode)
 
