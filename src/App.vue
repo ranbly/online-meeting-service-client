@@ -139,13 +139,13 @@
 
   //text weight
   .NGL {
-    font-weight: 300;
+    font-weight: 300 !important;
   }
   .NGR {
-    font-weight: 500;
+    font-weight: 500 !important;
   }
   .NGB {
-    font-weight: 700;
+    font-weight: 700 !important;
   }
 
 

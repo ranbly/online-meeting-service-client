@@ -3,9 +3,9 @@
         <div class="container">
             <div class=" padding-bottom-50 text-left">
                 <div>
-                    <section class="hero is-medium is-primary is-bold">
+                    <section class="hero is-primary">
                         <div class="hero-body padding-left-50">
-                            <h1 class="title h1">
+                            <h1 class="title h1 NGB">
                                 실시간 온라인 회의 보조 서비스
                             </h1>
                             <h2 class="subtitle">
@@ -115,7 +115,7 @@
                             <div class="margin-bottom-5 card">
                                 <div class="card-content make-channel">
                                     <div class="content">
-                                        <p class="h1 padding-top-35">채널 생성하기</p>
+                                        <p class="h1 padding-top-35">+ 채널 생성하기</p>
                                     </div>
                                 </div>
                             </div>
