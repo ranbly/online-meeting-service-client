@@ -19,6 +19,10 @@
 <style lang="scss">
   @import url(assets/variable.scss);
 
+  html {
+    overflow-y: hidden !important;
+  }
+
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -81,16 +85,28 @@
       padding-bottom: $pixel+px  !important;
     }
   }
+
+  // padding-all
+  @mixin padding($pixel){
+    .padding-#{pixel} {
+      padding: $pixel+px !important;
+    }
+  }
+
   @mixin make-padding($i: 0) {
     @for $i from 0 through 21 {
       @include padding-top($i * 5);
       @include padding-bottom($i * 5);
       @include padding-left($i * 5);
       @include padding-right($i * 5);
+      @include padding($i * 5);
     }
   }
 
   @include make-padding();
+
+
+
 
 
   //width & height
@@ -139,16 +155,23 @@
 
   //text weight
   .NGL {
-    font-weight: 300;
+    font-weight: 300 !important;
   }
   .NGR {
-    font-weight: 500;
+    font-weight: 500 !important;
   }
   .NGB {
-    font-weight: 700;
+    font-weight: 700 !important;
   }
 
 
-  //container
+  //display
+  inline-block {
+    display: inline-block !important;
+  }
+
+  block {
+    display: block !important;
+  }
 
 </style>

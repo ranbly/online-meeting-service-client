@@ -16,7 +16,10 @@ export default new Router({
       name: 'live_drawing_room',
       component: Hello
     },
-    { path: '/main', name: 'main', component: Main
+    {
+      path: '/main',
+      name: 'main',
+      component: Main
     }
   ]
 })

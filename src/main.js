@@ -4,8 +4,10 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import 'bulma/css/bulma.css'
+import vmodal from 'vue-js-modal'
 
 Vue.config.productionTip = false
+Vue.use(vmodal)
 
 /* eslint-disable no-new */
 new Vue({
@@ -14,3 +16,4 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+

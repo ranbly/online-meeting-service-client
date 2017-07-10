@@ -1,47 +1,78 @@
 <template>
-  <div>
     <div>
-      <!--<button class="button is-primary" v-on:click="this.redrawWithStep">그림 되돌리기</button> -->
+        <div>
+            <section class="hero is-light">
+                <modal name="example"
+                       :width="300"
+                       :height="300"
+                       @before-open="beforeOpen"
+                       @before-close="beforeClose">
+                    <b>{{time}}dddd</b>
+                </modal>
+                <button v-on:click="configPassword">
+                    패스워드입력
+                </button>
+                <div class="columns padding-top-15 padding-bottom-5">
+                    <div class="column is-4">
+                        <button class="button" v-on:click="this.clear">그림 지우기</button>
+                        <button class="button" v-on:click="changeColor('#FFFFFF')"></button>
+                        <button class="button is-danger" v-on:click="changeColor('#ff2b56')"></button>
+                        <button class="button is-warning" v-on:click="changeColor('#ffdb4a')"></button>
+                        <button class="button is-success" v-on:click="changeColor('#22c65b')"></button>
+                        <button class="button is-primary" v-on:click="changeColor('#00c4a7')"></button>
+                        <button class="button is-info" v-on:click="changeColor('#276cda')"></button>
+                        <button class="button is-dark" v-on:click="changeColor('#2f2f2f')"></button>
+                        <button class="button is-black" v-on:click="changeColor('#000000')"></button>
+                    </div>
+                    <div class="column is-3">
+                        <span v-on:click="changePenSize('13')" class="icon is-large"><i class="fa fa-circle"
+                                                                                        aria-hidden="true"></i></span>
+                        <span v-on:click="changePenSize('9')" class="icon is-medium"><i class="fa fa-circle"
+                                                                                        aria-hidden="true"></i></span>
+                        <span v-on:click="changePenSize('5')" class="icon"><i class="fa fa-circle"
+                                                                              aria-hidden="true"></i></span>
+                        <span v-on:click="changePenSize('1')" class="icon is-small"><i class="fa fa-circle"
+                                                                                       aria-hidden="true"></i></span>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="columns padding-top-10">
+            <div class="left-box">
+                <canvas
+                        v-on:mousedown="this.onMouseDown"
+                        v-on:mousemove="this.onMouseMove"
+                        v-on:mouseup="this.onMouseUp"
+                        id="canvas"></canvas>
+            </div>
+            <div class="right-box">
+                <div class="chat column">
+                    <div class="chat-box">
+                    <ul id="chat-log" class="chat-log">
+                        <li style="text-align: center">-----입장하였습니다-----</li>
+                        <li v-for="message in this.messages">
+                            {{message}}
+                        </li>
+                    </ul>
+                    </div>
 
-      <div id="canvas-ui">
-        <button class="button" v-on:click="this.clear">그림 지우기</button>
-        <button class="button" v-on:click="changeColor('#FFFFFF')"></button>
-        <button class="button is-danger" v-on:click="changeColor('#ff2b56')"></button>
-        <button class="button is-warning" v-on:click="changeColor('#ffdb4a')"></button>
-        <button class="button is-success" v-on:click="changeColor('#22c65b')"></button>
-        <button class="button is-primary" v-on:click="changeColor('#00c4a7')"></button>
-        <button class="button is-info" v-on:click="changeColor('#276cda')"></button>
-        <button class="button is-dark" v-on:click="changeColor('#2f2f2f')"></button>
-        <button class="button is-black" v-on:click="changeColor('#000000')"></button>
-      </div>
+                    <div class="chat-input-box">
+                    <div class="field is-grouped chat-input-form">
+                        <p class="control is-expanded">
+                            <input class="input" type="text" placeholder="메세지를 입력하세요" v-model="chatMessage"
+                                   v-on:keyup.enter="sendChat">
+                        </p>
+                        <p class="control">
+                            <a class="button is-info" v-on:click="this.sendChat">
+                                전송
+                            </a>
+                        </p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <canvas
-      v-on:mousedown="this.onMouseDown"
-      v-on:mousemove="this.onMouseMove"
-      v-on:mouseup="this.onMouseUp"
-      id="canvas"></canvas>
-
-    <div class="chat">
-      <ul id="chatLog" class="chat_log">
-        <li style="text-align: center">-----입장하였습니다-----</li>
-        <li v-for="message in this.messages">
-          {{message}}
-        </li>
-      </ul>
-
-      <div class="field is-grouped">
-        <p class="control is-expanded">
-          <input class="input" type="text" placeholder="메세지를 입력하세요" v-model="chatMessage" @keyup.enter="this.sendChat">
-        </p>
-        <p class="control">
-          <a class="button is-info" v-on:click="this.sendChat">
-            전송
-          </a>
-        </p>
-      </div>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -80,14 +111,37 @@
     },
     data () {
       return {
+          /**
+           * 데이터 초기화
+           */
         isDrawingMode: false,
         savedDrawingData: [],
         chatMessage: '',
         messages: [],
-        myCanvasColor: ''
+        myCanvasColor: '',
+        myCanvasPenSize: '',
+        time: 0,
+        duration: 5000
       }
     },
     methods: {
+      configPassword () {
+        alert('heelo')
+      },
+      show () {
+        this.$modal.show('modal-password')
+      },
+      hide () {
+        this.$modal.hide('modal-password')
+      },
+      beforeOpen (event) {
+        this.time = Date.now()
+      },
+      beforeClose (event) {
+        if (this.time + this.dump < Date.now()) {
+          event.stop()
+        }
+      },
       onMouseDown (event) {
         this.isDrawingMode = true
         this.appendDrawingData()
@@ -96,23 +150,29 @@
         const x = event.pageX - this.canvas.offsetLeft
         const y = event.pageY - this.canvas.offsetTop
         const colorCode = this.canvasContext.strokeStyle
+        const penSize = this.canvasContext.lineWidth
 
         console.log(colorCode)
+        console.log(penSize)
         this.canvasContext.moveTo(x, y)
-        this.saveLatestDrawingData(x, y, colorCode)
+        this.saveLatestDrawingData(x, y, colorCode, penSize)
 
         // Send Drawing Data
-        this.$socket.emit('drawing', {type: 'beginPath', position: {x, y}, color: colorCode})
+        this.$socket.emit('drawing', {type: 'beginPath', position: {x, y}, size: penSize, color: colorCode})
       },
 
       drawFromSocket (data) {
-        const {type, position, color} = data
+          /**
+           * 데이터 타입 정의 const { } = data 필수
+           */
+        const {type, position, size, color} = data
 
         switch (type) {
           case 'beginPath':
             this.canvasContext.beginPath()
             this.canvasContext.moveTo(position.x, position.y)
             this.canvasContext.strokeStyle = color
+            this.canvasContext.lineWidth = size
             break
 
           case 'lineTo':
@@ -132,14 +192,15 @@
         const x = event.pageX - this.canvas.offsetLeft
         const y = event.pageY - this.canvas.offsetTop
         const colorCode = this.canvasContext.strokeStyle
+        const penSize = this.canvasContext.lineWidth
 
         this.canvasContext.lineTo(x, y)
         this.canvasContext.stroke()
 
-        this.saveLatestDrawingData(x, y, colorCode)
+        this.saveLatestDrawingData(x, y, colorCode, penSize)
 
         // Send Drawing Data
-        this.$socket.emit('drawing', {type: 'lineTo', position: {x, y}, color: colorCode})
+        this.$socket.emit('drawing', {type: 'lineTo', position: {x, y}, size: penSize, color: colorCode})
       },
 
       onMouseUp (event) {
@@ -153,8 +214,8 @@
         this.savedDrawingData.push([])
       },
 
-      saveLatestDrawingData (x, y, colorCode) {
-        this.savedDrawingData[this.savedDrawingData.length - 1].push({x, y, colorCode})
+      saveLatestDrawingData (x, y, colorCode, penSize) {
+        this.savedDrawingData[this.savedDrawingData.length - 1].push({x, y, colorCode, penSize})
       },
 
       clear () {
@@ -166,6 +227,10 @@
         this.myCanvasColor = color
       },
 
+      changePenSize (penSize) {
+        this.canvasContext.lineWidth = penSize
+        this.myCanvasPenSize = penSize
+      },
       redrawWithStep () {
         this.savedDrawingData.forEach(drawingData => {
           this.canvasContext.beginPath()
@@ -187,39 +252,64 @@
         this.$socket.emit('sendMessage', this.chatMessage)
         this.messages.push('userName : ' + this.chatMessage)
         this.chatMessage = ''
+      },
+      modal () {
+        let obj = {
+          title: 'Alert Title',
+          message: 'Alert Message',
+          type: 'info'
+        }
+        this.$refs.simplert.openSimplert(obj)
       }
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
-  #canvas-ui {
-    margin-top: 30px;
-  }
+<style lang="scss">
+    .name {
+        width: 10%;
+    }
 
-  .chat_log {
-    width: 95%;
-    height: 200px;
-    padding: 10px;
+    .message {
+        width: 70%;
+    }
 
-  }
+    // 채팅박스
+    .chat {
+        height: 100%;
+        background-color: #EAEAEA;
+        bottom: 0;
+        right: 0;
+        text-align: left;
+        overflow: scroll;
 
-  .name {
-    width: 10%;
-  }
+        &-log {
+            width: 95%;
+            padding: 10px;
+        }
 
-  .message {
-    width: 70%;
-  }
+        &-input-form {
+            position: fixed;
+            padding: 10px;
+            background-color: #D5D5D5;
+            bottom: 2%;
+            width: 23%;
+        }
 
-  .chat {
-    width: 40%;
-    height: 200px;
-    background-color: #EAEAEA;
-    position: absolute;
-    bottom: 15%;
-    right: 5%;
-    text-align: left;
-  }
+        &-box {
+            height: 80%;
+        }
+    }
+
+    .left-box {
+        float: left;
+        width: 75%;
+    }
+
+    .right-box {
+        float: right;
+        width: 35%;
+    }
+
 </style>
