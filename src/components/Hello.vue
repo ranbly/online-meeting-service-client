@@ -2,16 +2,17 @@
     <div>
         <div>
             <section class="hero is-light">
-                <modal name="example"
-                       :width="300"
+                <modal name="modal"
+                       :width="500"
                        :height="300"
                        @before-open="beforeOpen"
                        @before-close="beforeClose">
-                    <b>{{time}}dddd</b>
+                    <div>
+                        <p class="h2 text-center padding-10">Enter Password</p>
+                        <input style="width: 88%" class="input margin-30" placeholder="password..." />
+                        <button class="button is-primary">인증</button>
+                    </div>
                 </modal>
-                <button v-on:click="configPassword">
-                    패스워드입력
-                </button>
                 <div class="columns padding-top-15 padding-bottom-5">
                     <div class="column is-4">
                         <button class="button" v-on:click="this.clear">그림 지우기</button>
@@ -48,26 +49,26 @@
             <div class="right-box">
                 <div class="chat column">
                     <div class="chat-box">
-                    <ul id="chat-log" class="chat-log">
-                        <li style="text-align: center">-----입장하였습니다-----</li>
-                        <li v-for="message in this.messages">
-                            {{message}}
-                        </li>
-                    </ul>
+                        <ul id="chat-log" class="chat-log">
+                            <li style="text-align: center">-----입장하였습니다-----</li>
+                            <li v-for="message in this.messages">
+                                {{message}}
+                            </li>
+                        </ul>
                     </div>
 
                     <div class="chat-input-box">
-                    <div class="field is-grouped chat-input-form">
-                        <p class="control is-expanded">
-                            <input class="input" type="text" placeholder="메세지를 입력하세요" v-model="chatMessage"
-                                   v-on:keyup.enter="sendChat">
-                        </p>
-                        <p class="control">
-                            <a class="button is-info" v-on:click="this.sendChat">
-                                전송
-                            </a>
-                        </p>
-                    </div>
+                        <div class="field is-grouped chat-input-form">
+                            <p class="control is-expanded">
+                                <input class="input" type="text" placeholder="메세지를 입력하세요" v-model="chatMessage"
+                                       v-on:keyup.enter="sendChat">
+                            </p>
+                            <p class="control">
+                                <a class="button is-info" v-on:click="this.sendChat">
+                                    전송
+                                </a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -100,6 +101,9 @@
         this.messages.push('other : ' + message)
       }
     },
+    /**
+     * 최초 실행하는 mounted
+     */
     mounted: function () {
       this.canvas = document.getElementById('canvas')
       this.canvasContext = this.canvas.getContext('2d')
@@ -108,12 +112,13 @@
       this.canvasContext.lineWidth = 5
       this.canvas.width = window.innerWidth
       this.canvas.height = window.innerHeight
+      this.show()
     },
     data () {
       return {
-          /**
-           * 데이터 초기화
-           */
+        /**
+         * 데이터 초기화
+         */
         isDrawingMode: false,
         savedDrawingData: [],
         chatMessage: '',
@@ -125,21 +130,20 @@
       }
     },
     methods: {
-      configPassword () {
-        alert('heelo')
-      },
       show () {
-        this.$modal.show('modal-password')
+        this.$modal.show('modal')
       },
       hide () {
-        this.$modal.hide('modal-password')
+        this.$modal.hide('modal')
       },
       beforeOpen (event) {
         this.time = Date.now()
+        console.log('this is modal')
       },
       beforeClose (event) {
         if (this.time + this.dump < Date.now()) {
           event.stop()
+          console.log('this is modal close')
         }
       },
       onMouseDown (event) {
@@ -162,9 +166,9 @@
       },
 
       drawFromSocket (data) {
-          /**
-           * 데이터 타입 정의 const { } = data 필수
-           */
+        /**
+         * 데이터 타입 정의 const { } = data 필수
+         */
         const {type, position, size, color} = data
 
         switch (type) {
