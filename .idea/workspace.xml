@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9c5087d5-9388-4d91-8421-229bb8609e05" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.vue" afterPath="$PROJECT_DIR$/src/App.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Main.vue" afterPath="$PROJECT_DIR$/src/components/Main.vue" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -449,7 +447,7 @@
       <workItem from="1496807541540" duration="12125000" />
       <workItem from="1499403294271" duration="14419000" />
       <workItem from="1499646519321" duration="28038000" />
-      <workItem from="1499731272794" duration="18214000" />
+      <workItem from="1499731272794" duration="18253000" />
     </task>
     <task id="LOCAL-00001" summary="main 페이지 채널 추가기능 추가, channel 페이지 펜 굵기 수정기능 추가, chattinng box css 수정">
       <created>1499674677586</created>
@@ -479,11 +477,18 @@
       <option name="project" value="LOCAL" />
       <updated>1499743828321</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="channel 추가하기 modal 기능 적용">
+      <created>1499753530998</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1499753530998</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100044000" />
+    <option name="totallyTimeSpent" value="100083000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="357" y="138" width="1929" height="1221" extended-state="0" />
@@ -540,7 +545,8 @@
     <MESSAGE value="modal 창 띄우기" />
     <MESSAGE value="modal 디자인 수정, 패스워드 기능 prototype 제작중" />
     <MESSAGE value="channel 추가하기 modal 미적용 기능 구현 (tag 여러개 추가 미적용)" />
-    <option name="LAST_COMMIT_MESSAGE" value="channel 추가하기 modal 미적용 기능 구현 (tag 여러개 추가 미적용)" />
+    <MESSAGE value="channel 추가하기 modal 기능 적용" />
+    <option name="LAST_COMMIT_MESSAGE" value="channel 추가하기 modal 기능 적용" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
