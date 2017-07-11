@@ -162,7 +162,7 @@
       return {
         addChannelTitle: '',
         addChannelContent: '',
-        addChannelTag: '',
+        addChannelTag1: '',
         channels: [
           {
             title: '당신의 첫번째 채널입니다!',
