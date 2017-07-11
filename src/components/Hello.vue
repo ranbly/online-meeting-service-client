@@ -14,7 +14,7 @@
                     <p class="h4 text-center padding-top-10">비밀번호가 틀렸습니다. 다시 한 번 확인해 주세요! </p>
                 </div>
                 <div class="columns is-12">
-                    <input v-model="passwordKey" class="input margin-left-30 margin-right-30 margin-top-50 "
+                    <input v-model="passwordKey" v-on:keyup.enter="configPassword" class="input margin-left-30 margin-right-30 margin-top-50 "
                            type="password" placeholder="password..."/>
                 </div>
                 <div class="columns">
@@ -124,7 +124,8 @@
      */
     mounted: function () {
       this.canvas = document.getElementById('canvas')
-      document.getElementById('in-channel-section').style.display = 'none'
+      this.containerSection = document.getElementById('in-channel-section')
+      this.containerSection.style.display = 'none'
       this.canvasContext = this.canvas.getContext('2d')
       this.canvasContext.strokeStyle = '#3dff22'
       this.canvasContext.lineJoin = 'round'
@@ -168,7 +169,7 @@
       },
       configPassword (passwordKey) {
         if (this.passwordKey === '1234') {
-          document.getElementById('in-channel-section').style.display = 'block'
+          this.containerSection.style.display = 'block'
           this.hide()
         } else {
           console.log('password false')
