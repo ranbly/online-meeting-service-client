@@ -1,73 +1,91 @@
 <template>
     <div>
-        <div>
-            <section class="hero is-light">
-                <modal name="modal"
-                       :width="500"
-                       :height="300"
-                       @before-open="beforeOpen"
-                       @before-close="beforeClose">
-                    <div>
-                        <p class="h2 text-center padding-10">Enter Password</p>
-                        <input style="width: 88%" class="input margin-30" placeholder="password..." />
-                        <button class="button is-primary">인증</button>
-                    </div>
-                </modal>
-                <div class="columns padding-top-15 padding-bottom-5">
-                    <div class="column is-4">
-                        <button class="button" v-on:click="this.clear">그림 지우기</button>
-                        <button class="button" v-on:click="changeColor('#FFFFFF')"></button>
-                        <button class="button is-danger" v-on:click="changeColor('#ff2b56')"></button>
-                        <button class="button is-warning" v-on:click="changeColor('#ffdb4a')"></button>
-                        <button class="button is-success" v-on:click="changeColor('#22c65b')"></button>
-                        <button class="button is-primary" v-on:click="changeColor('#00c4a7')"></button>
-                        <button class="button is-info" v-on:click="changeColor('#276cda')"></button>
-                        <button class="button is-dark" v-on:click="changeColor('#2f2f2f')"></button>
-                        <button class="button is-black" v-on:click="changeColor('#000000')"></button>
-                    </div>
-                    <div class="column is-3">
-                        <span v-on:click="changePenSize('13')" class="icon is-large"><i class="fa fa-circle"
-                                                                                        aria-hidden="true"></i></span>
-                        <span v-on:click="changePenSize('9')" class="icon is-medium"><i class="fa fa-circle"
-                                                                                        aria-hidden="true"></i></span>
-                        <span v-on:click="changePenSize('5')" class="icon"><i class="fa fa-circle"
-                                                                              aria-hidden="true"></i></span>
-                        <span v-on:click="changePenSize('1')" class="icon is-small"><i class="fa fa-circle"
-                                                                                       aria-hidden="true"></i></span>
+        <modal name="modal"
+               :width="500"
+               :height="300"
+               @before-open="beforeOpen"
+               @before-close="beforeClose">
+            <div class="padding-30">
+                <p class="h2 NGB text-center padding-top-20">Enter Password</p>
+                <div>
+                    <p class="h5 text-center padding-top-10 color-light is-active">입장하려면 비밀번호를 입력하세요..</p>
+                </div>
+                <div id="passwordIncorrectMsg" v-show="configPassword" style="margin-bottom: -30px;">
+                    <p class="h4 text-center padding-top-10">비밀번호가 틀렸습니다. 다시 한 번 확인해 주세요! </p>
+                </div>
+                <div class="columns is-12">
+                    <input v-model="passwordKey" class="input margin-left-30 margin-right-30 margin-top-50 "
+                           type="password" placeholder="password..."/>
+                </div>
+                <div class="columns">
+                    <div class="column is-12 text-center margin-top-10">
+                        <button v-on:click="configPassword"
+                                style="width: 92%;"
+                                class="button width-100per is-primary is-outlined">인증
+                        </button>
                     </div>
                 </div>
-            </section>
-        </div>
-        <div class="columns padding-top-10">
-            <div class="left-box">
-                <canvas
-                        v-on:mousedown="this.onMouseDown"
-                        v-on:mousemove="this.onMouseMove"
-                        v-on:mouseup="this.onMouseUp"
-                        id="canvas"></canvas>
             </div>
-            <div class="right-box">
-                <div class="chat column">
-                    <div class="chat-box">
-                        <ul id="chat-log" class="chat-log">
-                            <li style="text-align: center">-----입장하였습니다-----</li>
-                            <li v-for="message in this.messages">
-                                {{message}}
-                            </li>
-                        </ul>
+        </modal>
+        <div id="in-channel-section">
+            <div>
+                <section class="hero is-light">
+                    <div class="columns padding-top-15 padding-bottom-5">
+                        <div class="column is-4">
+                            <button class="button" v-on:click="this.clear">그림 지우기</button>
+                            <button class="button" v-on:click="changeColor('#FFFFFF')"></button>
+                            <button class="button is-danger" v-on:click="changeColor('#ff2b56')"></button>
+                            <button class="button is-warning" v-on:click="changeColor('#ffdb4a')"></button>
+                            <button class="button is-success" v-on:click="changeColor('#22c65b')"></button>
+                            <button class="button is-primary" v-on:click="changeColor('#00c4a7')"></button>
+                            <button class="button is-info" v-on:click="changeColor('#276cda')"></button>
+                            <button class="button is-dark" v-on:click="changeColor('#2f2f2f')"></button>
+                            <button class="button is-black" v-on:click="changeColor('#000000')"></button>
+                        </div>
+                        <div class="column is-3">
+                        <span v-on:click="changePenSize('13')" class="icon is-large"><i class="fa fa-circle"
+                                                                                        aria-hidden="true"></i></span>
+                            <span v-on:click="changePenSize('9')" class="icon is-medium"><i class="fa fa-circle"
+                                                                                            aria-hidden="true"></i></span>
+                            <span v-on:click="changePenSize('5')" class="icon"><i class="fa fa-circle"
+                                                                                  aria-hidden="true"></i></span>
+                            <span v-on:click="changePenSize('1')" class="icon is-small"><i class="fa fa-circle"
+                                                                                           aria-hidden="true"></i></span>
+                        </div>
                     </div>
+                </section>
+            </div>
+            <div class="columns padding-top-10">
+                <div class="left-box">
+                    <canvas
+                            v-on:mousedown="this.onMouseDown"
+                            v-on:mousemove="this.onMouseMove"
+                            v-on:mouseup="this.onMouseUp"
+                            id="canvas"></canvas>
+                </div>
+                <div class="right-box">
+                    <div class="chat column">
+                        <div class="chat-box">
+                            <ul id="chat-log" class="chat-log">
+                                <li style="text-align: center">-----입장하였습니다-----</li>
+                                <li v-for="message in this.messages">
+                                    {{message}}
+                                </li>
+                            </ul>
+                        </div>
 
-                    <div class="chat-input-box">
-                        <div class="field is-grouped chat-input-form">
-                            <p class="control is-expanded">
-                                <input class="input" type="text" placeholder="메세지를 입력하세요" v-model="chatMessage"
-                                       v-on:keyup.enter="sendChat">
-                            </p>
-                            <p class="control">
-                                <a class="button is-info" v-on:click="this.sendChat">
-                                    전송
-                                </a>
-                            </p>
+                        <div class="chat-input-box">
+                            <div class="field is-grouped chat-input-form">
+                                <p class="control is-expanded">
+                                    <input class="input" type="text" placeholder="메세지를 입력하세요" v-model="chatMessage"
+                                           v-on:keyup.enter="sendChat">
+                                </p>
+                                <p class="control">
+                                    <a class="button is-info" v-on:click="this.sendChat">
+                                        전송
+                                    </a>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -106,6 +124,7 @@
      */
     mounted: function () {
       this.canvas = document.getElementById('canvas')
+      document.getElementById('in-channel-section').style.display = 'none'
       this.canvasContext = this.canvas.getContext('2d')
       this.canvasContext.strokeStyle = '#3dff22'
       this.canvasContext.lineJoin = 'round'
@@ -119,6 +138,7 @@
         /**
          * 데이터 초기화
          */
+        passwordKey: '1234',
         isDrawingMode: false,
         savedDrawingData: [],
         chatMessage: '',
@@ -146,6 +166,16 @@
           console.log('this is modal close')
         }
       },
+      configPassword (passwordKey) {
+        if (this.passwordKey === '1234') {
+          document.getElementById('in-channel-section').style.display = 'block'
+          this.hide()
+        } else {
+          console.log('password false')
+          return false
+        }
+      },
+
       onMouseDown (event) {
         this.isDrawingMode = true
         this.appendDrawingData()

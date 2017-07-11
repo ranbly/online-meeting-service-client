@@ -23,6 +23,10 @@
         overflow-y: hidden !important;
     }
 
+    input {
+        margin: 0 !important;
+    }
+
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
@@ -123,6 +127,11 @@
         .width-#{$pixel} {
             width: $pixel+px !important;
         }
+
+        // width : 100% 이하 size
+        .width-#{$pixel}per {
+            width: percentage($pixel / 100) !important; //동작안함!?
+        }
     }
 
     @mixin height($pixel) {
@@ -157,7 +166,27 @@
 
     //h1~h6
     .h1 {
-        font-size: 35px;
+        font-size: 32px;
+    }
+
+    .h2 {
+        font-size: 24px;
+    }
+
+    .h3 {
+        font-size: 19px;
+    }
+
+    .h4 {
+        font-size: 16px;
+    }
+
+    .h5 {
+        font-size: 14px;
+    }
+
+    .h6 {
+        font-size: 13px;
     }
 
     //text weight
