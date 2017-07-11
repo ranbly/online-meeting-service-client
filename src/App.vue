@@ -19,10 +19,6 @@
 <style lang="scss">
     @import url(assets/variable.scss);
 
-    html {
-        overflow-y: hidden !important;
-    }
-
     input {
         margin: 0 !important;
     }
@@ -146,6 +142,8 @@
             @include height($i * 5);
         }
     }
+
+    @include make-width-height()
 
     //text-align
     .text-center {

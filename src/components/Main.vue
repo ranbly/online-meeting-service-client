@@ -22,9 +22,9 @@
             <div>
                 <router-link v-bind:to="'/channel'">방금 방문한 채널로 이동하기</router-link>
                 <div class="margin-top-20">
-                    <div id="channel-div" class="columns is-multiline">
-                        <div class="column is-6" v-for="channel in this.channels">
-                            <div class="margin-bottom-5 card">
+                    <div class="columns is-multiline">
+                        <div class="channel-div column is-6" v-for="channel in this.channels">
+                            <div class="margin-bottom-5 card height-180">
                                 <div class="card-content">
                                     <div class="media">
                                         <div class="media-left">
@@ -39,11 +39,12 @@
                                     </div>
 
                                     <div class="content">
-                                        {{channel.content}}
+                                        <p style="max-height: 100px" class="channel-list-content margin-bottom-0">
+                                            {{channel.content}}
+                                        </p>
                                         <a>{{channel.tag1}} </a>
                                         <a>{{channel.tag1}} </a>
                                         <a>{{channel.tag1}}</a>
-
                                         <br>
                                         <small>11:09 PM - 1 Jan 2016</small>
                                     </div>
@@ -56,15 +57,74 @@
                             <div class="margin-bottom-5 card">
                                 <div class="card-content make-channel">
                                     <div class="content">
-                                        <p class="h1 padding-top-35">+ 채널 생성하기</p>
-                                        <input type="text" v-model="addChannelTitle" placeholder="add channel title"/>
-                                        <input type="text" v-model="addChannelContent"
-                                               placeholder="add channel descriptions"/>
-                                        <input type="text" v-model="addChannelTag1" placeholder="add tags"/>
-                                        <!--<input type="text" v-model="addChannelTag2" placeholder="add tags"/>-->
-                                        <!--<input type="text" v-model="addChannelTag3" placeholder="add tags"/>-->
-                                        <button v-on:click="this.addChannel" class="btn">추가</button>
+                                        <p v-on:click="show" class="h1 padding-top-35"><a>+ 채널 생성하기</a></p>
                                     </div>
+
+                                    <!-- 채널 생성 modal -->
+                                    <modal name="make-channel-modal"
+                                           :width="700"
+                                           :height="490">
+                                        <div class="padding-30">
+                                            <div>
+                                                <p class="h1 NGB text-center padding-top-20">새로운 채널 만들기</p>
+                                                <p class="h4 text-center padding-top-10">채널을 만들어 링크를 공유해보세요</p>
+                                            </div>
+                                            <div style="margin-left: -90px"
+                                                 class="make-channel-forms field padding-top-40">
+                                                <div class="make-channel-forms field is-horizontal">
+                                                    <div class="field-label is-normal">
+                                                        <label class="label">제목</label>
+                                                    </div>
+                                                    <div class="field-body">
+                                                        <div class="field is-grouped">
+                                                            <p class="control is-expanded has-icons-left">
+                                                                <input v-model="addChannelTitle" class="input"
+                                                                       type="text" placeholder="채널의 이름을 알려주세요">
+                                                                <span class="icon is-small is-left"><i
+                                                                        class="fa fa-user"></i></span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="make-channel-forms field is-horizontal">
+                                                    <div class="field-label is-normal">
+                                                        <label class="label">설명</label>
+                                                    </div>
+                                                    <div class="field-body">
+                                                        <div class="field is-grouped">
+                                                            <p class="control is-expanded has-icons-left">
+                                                                <input v-model="addChannelContent" class="input"
+                                                                       type="text" placeholder="어떤 채널인지 간단히 설명해주세요">
+                                                                <span class="icon is-small is-left"><i
+                                                                        class="fa fa-user"></i></span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="make-channel-forms field is-horizontal">
+                                                    <div class="field-label is-normal">
+                                                        <label class="label">태그</label>
+                                                    </div>
+                                                    <div class="field-body">
+                                                        <div class="field is-grouped">
+                                                            <p class="control is-expanded has-icons-left">
+                                                                <input v-model="addChannelTag1" class="input"
+                                                                       type="text" placeholder="채널을 나타내는 태그를 적어주세요">
+                                                                <span class="icon is-small is-left"><i
+                                                                        class="fa fa-user"></i></span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button v-on:click="this.addChannel"
+                                                    class="button is-primary is-large width-100per">
+                                                채널생성
+                                            </button>
+                                        </div>
+                                    </modal>
                                 </div>
                             </div>
                         </div>
@@ -85,13 +145,22 @@
         channels: [
           {
             title: '당신의 첫번째 채널입니다!',
-            content: '채널의 설명을 적어주세요',
-            tag: '#html'
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris. ' +
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            tag1: '#responsive'
           }
         ]
       }
     },
     methods: {
+      show () {
+        this.$modal.show('make-channel-modal')
+      },
+
+      hide () {
+        this.$modal.hide('make-channel-modal')
+      },
+
       addChannel: function () {
         const newChannelTitle = this.addChannelTitle.trim()
         const newChannelContent = this.addChannelContent.trim()
@@ -118,6 +187,8 @@
         this.addChannelTag1 = ''
 //        this.addChannelTag2 = ''
 //        this.addChannelTag3 = ''
+
+        this.hide()
       }
     }
   }
@@ -126,5 +197,15 @@
 <style lang="scss">
     .make-channel {
         height: 180px !important;
+    }
+
+    .make-channel-forms {
+        padding-bottom: 20px;
+    }
+
+    .channel-list-content {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 </style>
