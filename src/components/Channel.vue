@@ -14,7 +14,8 @@
                     <p class="h4 text-center padding-top-10">비밀번호가 틀렸습니다. 다시 한 번 확인해 주세요! </p>
                 </div>
                 <div class="columns is-12">
-                    <input v-model="passwordKey" v-on:keyup.enter="configPassword" class="input margin-left-30 margin-right-30 margin-top-50 "
+                    <input v-model="passwordKey" v-on:keyup.enter="configPassword"
+                           class="input margin-left-30 margin-right-30 margin-top-50 "
                            type="password" placeholder="password..."/>
                 </div>
                 <div class="columns">
@@ -57,6 +58,12 @@
             </div>
             <div class="columns padding-top-10">
                 <div class="left-box">
+                    <div v-if="!image">
+                        <input v-on:change="onFileChange" type="file" id="fileUpload"/>
+                    </div>
+                    <div v-else>
+                        <img :src="image" />
+                    </div>
                     <canvas
                             v-on:mousedown="this.onMouseDown"
                             v-on:mousemove="this.onMouseMove"
@@ -147,26 +154,46 @@
         myCanvasColor: '',
         myCanvasPenSize: '',
         time: 0,
-        duration: 5000
+        duration: 5000 // 대기시간 조정
       }
     },
     methods: {
+      onFileChange (e) {
+        const files = e.target.files || e.dataTransfer.files
+        if (!files.length) return
+        this.createImage(files[0])
+      },
+
+      createImage (file) {
+        this.image = new Image()
+        this.reader = new FileReader()
+
+        this.reader.onload = (e) => {
+          this.image = e.target.result
+        }
+        this.reader.readAsDataURL(file)
+      },
+
       show () {
         this.$modal.show('modal')
       },
+
       hide () {
         this.$modal.hide('modal')
       },
+
       beforeOpen (event) {
         this.time = Date.now()
         console.log('this is modal')
       },
+
       beforeClose (event) {
         if (this.time + this.dump < Date.now()) {
           event.stop()
           console.log('this is modal close')
         }
       },
+
       configPassword (passwordKey) {
         if (this.passwordKey === '1234') {
           this.containerSection.style.display = 'block'

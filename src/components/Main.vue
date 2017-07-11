@@ -133,7 +133,7 @@
                                                                 </p>
                                                             </div>
                                                             <p class="control is-expanded">
-                                                                <input v-model="addChannelTag1" class="input"
+                                                                <input class="input"
                                                                        type="password" placeholder="비밀방으로 설정할시 패스워드를 입력해주세요">
                                                             </p>
                                                         </div>
