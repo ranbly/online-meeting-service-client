@@ -63,7 +63,7 @@
                                     <!-- 채널 생성 modal -->
                                     <modal name="make-channel-modal"
                                            :width="700"
-                                           :height="490">
+                                           :height="550">
                                         <div class="padding-30">
                                             <div>
                                                 <p class="h1 NGB text-center padding-top-20">새로운 채널 만들기</p>
@@ -114,6 +114,27 @@
                                                                        type="text" placeholder="채널을 나타내는 태그를 적어주세요">
                                                                 <span class="icon is-small is-left"><i
                                                                         class="fa fa-user"></i></span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="make-channel-forms field is-horizontal">
+                                                    <div class="field-label is-normal is-left">
+                                                        <label class="label">암호</label>
+                                                    </div>
+                                                    <div class="field-body is-right">
+                                                        <div class="field is-grouped">
+                                                            <div class="padding-right-20">
+                                                                <p class="control">
+                                                                    <label class="checkbox padding-top-5">
+                                                                        <input type="checkbox"><span class="padding-left-10 padding-top-5"> 비밀방</span>
+                                                                    </label>
+                                                                </p>
+                                                            </div>
+                                                            <p class="control is-expanded">
+                                                                <input v-model="addChannelTag1" class="input"
+                                                                       type="password" placeholder="비밀방으로 설정할시 패스워드를 입력해주세요">
                                                             </p>
                                                         </div>
                                                     </div>

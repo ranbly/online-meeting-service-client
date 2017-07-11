@@ -139,7 +139,7 @@
         /**
          * 데이터 초기화
          */
-        passwordKey: '1234',
+        passwordKey: '',
         isDrawingMode: false,
         savedDrawingData: [],
         chatMessage: '',
