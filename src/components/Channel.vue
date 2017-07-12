@@ -1,20 +1,19 @@
 <template>
     <div>
+        <!-- 채널 비밀번호 확인 모달 start-->
         <modal name="modal"
                :width="500"
-               :height="300"
-               @before-open="beforeOpen"
-               @before-close="beforeClose">
+               :height="300">
             <div class="padding-30">
                 <p class="h2 NGB text-center padding-top-20">Enter Password</p>
                 <div>
                     <p class="h5 text-center padding-top-10 color-light is-active">입장하려면 비밀번호를 입력하세요..</p>
                 </div>
-                <div id="passwordIncorrectMsg" v-show="configPassword" style="margin-bottom: -30px;">
+                <div id="passwordIncorrectMsg" v-show="false" v-if="configPassword" style="margin-bottom: -30px;">
                     <p class="h4 text-center padding-top-10">비밀번호가 틀렸습니다. 다시 한 번 확인해 주세요! </p>
                 </div>
                 <div class="columns is-12">
-                    <input v-model="passwordKey" v-on:keyup.enter="configPassword"
+                    <input v-model="passwordKey" v-on:keyup.enter="configPassword" autofocus
                            class="input margin-left-30 margin-right-30 margin-top-50 "
                            type="password" placeholder="password..."/>
                 </div>
@@ -28,6 +27,33 @@
                 </div>
             </div>
         </modal>
+        <!-- 채널 비밀번호 확인 모달 End -->
+
+        <!-- 닉네임 설정 모달 Start -->
+        <modal name="setNicknameModal"
+               :width="500"
+               :height="300">
+            <div class="padding-30">
+                <p class="h2 NGB text-center padding-top-20">Set Nickname</p>
+                <div>
+                    <p class="h5 text-center padding-top-10 color-light is-active">채널에서 사용할 닉네임을 설정해 주세요.</p>
+                </div>
+                <div class="columns is-12">
+                    <input v-model="nicknameKey" v-on:keyup.enter="logInChannel" autofocus="autofocus"
+                           class="input margin-left-30 margin-right-30 margin-top-50 "
+                           type="text" placeholder="your nickname..."/>
+                </div>
+                <div class="columns">
+                    <div class="column is-12 text-center margin-top-10">
+                        <button v-on:click="logInChannel"
+                                style="width: 92%;"
+                                class="button width-100per is-primary is-outlined">입장하기
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </modal>
+        <!-- 닉네임 설정 모달 End -->
         <div id="in-channel-section">
             <div>
                 <section class="hero is-light">
@@ -58,12 +84,7 @@
             </div>
             <div class="columns padding-top-10">
                 <div class="left-box">
-                    <div v-if="!image">
-                        <input v-on:change="onFileChange" type="file" id="fileUpload"/>
-                    </div>
-                    <div v-else>
-                        <img :src="image" />
-                    </div>
+                    <input v-on:change="onFileChange" type="file" id="fileUpload"/>
                     <canvas
                             v-on:mousedown="this.onMouseDown"
                             v-on:mousemove="this.onMouseMove"
@@ -74,7 +95,7 @@
                     <div class="chat column">
                         <div class="chat-box">
                             <ul id="chat-log" class="chat-log">
-                                <li style="text-align: center">-----입장하였습니다-----</li>
+                                <li style="text-align: center" id="own-nickname">----- {{nicknameKey}}님이 입장하였습니다 -----</li>
                                 <li v-for="message in this.messages">
                                     {{message}}
                                 </li>
@@ -84,7 +105,8 @@
                         <div class="chat-input-box">
                             <div class="field is-grouped chat-input-form">
                                 <p class="control is-expanded">
-                                    <input class="input" type="text" placeholder="메세지를 입력하세요" v-model="chatMessage"
+                                    <input class="input" type="text" placeholder="메세지를 입력하세요" autofocus
+                                           v-model="chatMessage"
                                            v-on:keyup.enter="sendChat">
                                 </p>
                                 <p class="control">
@@ -123,13 +145,14 @@
         })
       },
       receiveMessage: function (message) {
-        this.messages.push('other : ' + message)
+        this.messages.push('others : ' + message)
       }
     },
     /**
-     * 최초 실행하는 mounted
+     * 최초 실행하는 mounted. 변수선언
      */
     mounted: function () {
+      this.ownNickname = document.getElementById('own-nickname').innerHTML
       this.canvas = document.getElementById('canvas')
       this.containerSection = document.getElementById('in-channel-section')
       this.containerSection.style.display = 'none'
@@ -139,7 +162,7 @@
       this.canvasContext.lineWidth = 5
       this.canvas.width = window.innerWidth
       this.canvas.height = window.innerHeight
-      this.show()
+      this.show('modal')
     },
     data () {
       return {
@@ -147,6 +170,7 @@
          * 데이터 초기화
          */
         passwordKey: '',
+        nicknameKey: '',
         isDrawingMode: false,
         savedDrawingData: [],
         chatMessage: '',
@@ -165,43 +189,44 @@
       },
 
       createImage (file) {
-        this.image = new Image()
-        this.reader = new FileReader()
+        const reader = new FileReader()
+        const vm = this
 
-        this.reader.onload = (e) => {
-          this.image = e.target.result
+        reader.onload = (e) => {
+          vm.image = e.target.result
         }
-        this.reader.readAsDataURL(file)
+        reader.readAsDataURL(file)
       },
 
-      show () {
-        this.$modal.show('modal')
+      show (modalName) {
+        this.$modal.show(modalName)
       },
 
-      hide () {
-        this.$modal.hide('modal')
-      },
-
-      beforeOpen (event) {
-        this.time = Date.now()
-        console.log('this is modal')
-      },
-
-      beforeClose (event) {
-        if (this.time + this.dump < Date.now()) {
-          event.stop()
-          console.log('this is modal close')
-        }
+      hide (modalName) {
+        this.$modal.hide(modalName)
       },
 
       configPassword (passwordKey) {
         if (this.passwordKey === '1234') {
-          this.containerSection.style.display = 'block'
-          this.hide()
+          this.hide('modal')
+
+          this.show('setNicknameModal')
+          this.setNickName()
         } else {
           console.log('password false')
           return false
         }
+      },
+
+      setNickName () {
+        if (this.nicknameKey.type.string) {
+          this.hide('setNicknameModal')
+        }
+      },
+
+      logInChannel () {
+        this.hide('setNicknameModal')
+        this.containerSection.style.display = 'block'
       },
 
       onMouseDown (event) {
@@ -293,6 +318,7 @@
         this.canvasContext.lineWidth = penSize
         this.myCanvasPenSize = penSize
       },
+
       redrawWithStep () {
         this.savedDrawingData.forEach(drawingData => {
           this.canvasContext.beginPath()
@@ -312,7 +338,8 @@
       sendChat () {
         if (this.chatMessage === '') return console.error('비어있음')
         this.$socket.emit('sendMessage', this.chatMessage)
-        this.messages.push('userName : ' + this.chatMessage)
+        this.$socket.emit('sendNickname', this.ownNickname)
+        this.messages.push(this.nicknameKey + ' : ' + this.chatMessage)
         this.chatMessage = ''
       },
       modal () {

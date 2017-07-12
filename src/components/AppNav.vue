@@ -30,7 +30,7 @@
                     </figure>
                     Profile
                 </a>
-                <a class="nav-item is-tab">Log out</a>
+                <a class="nav-item is-tab">Log In</a>
             </div>
         </div>
     </nav>
