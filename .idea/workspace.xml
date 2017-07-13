@@ -531,7 +531,7 @@
       <workItem from="1499818404243" duration="4590000" />
       <workItem from="1499823434105" duration="9145000" />
       <workItem from="1499908982683" duration="1216000" />
-      <workItem from="1499926810985" duration="9094000" />
+      <workItem from="1499926810985" duration="9105000" />
     </task>
     <task id="LOCAL-00001" summary="main 페이지 채널 추가기능 추가, channel 페이지 펜 굵기 수정기능 추가, chattinng box css 수정">
       <created>1499674677586</created>
@@ -610,11 +610,18 @@
       <option name="project" value="LOCAL" />
       <updated>1499936812107</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="메인페이지 particles.js 적용">
+      <created>1499936829896</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1499936829896</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="133551000" />
+    <option name="totallyTimeSpent" value="133562000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="640" y="96" width="1848" height="1263" extended-state="0" />
