@@ -8,9 +8,11 @@
 
 <script>
   import AppNav from './components/AppNav.vue'
+  import VueParticles from '../node_modules/vue-particles/src/vue-particles/vue-particles'
   export default {
     name: 'app',
     components: {
+      VueParticles,
       AppNav
     }
   }
@@ -201,12 +203,30 @@
     }
 
     //display
-    inline-block {
+    .inline-block {
         display: inline-block !important;
     }
 
-    block {
+    .block {
         display: block !important;
     }
+
+    .inline {
+        display: inline !important;
+    }
+
+    //align
+    .vertical-align-top {
+        vertical-align: top;
+    }
+
+    .vertical-align-bottom {
+        vertical-align: bottom;
+    }
+
+    .vertical-align-middle {
+        vertical-align: middle;
+    }
+
 
 </style>

@@ -14,6 +14,23 @@
                             <div class="padding-top-20">
                                 <a class="button is-outlined is-medium">채널 만들기</a>
                             </div>
+                            <vue-particles style="position: relative; z-index: 1;"
+                                    color="#dedede"
+                                    :particleOpacity="0.9"
+                                    :particlesNumber="80"
+                                    shapeType="circle"
+                                    :particleSize="5"
+                                    linesColor="#ffffff"
+                                    :linesWidth="1"
+                                    :lineLinked="true"
+                                    :lineOpacity="0.7"
+                                    :linesDistance="150"
+                                    :moveSpeed="2"
+                                    :hoverEffect="true"
+                                    hoverMode="grab"
+                                    :clickEffect="true"
+                                    clickMode="push">
+                            </vue-particles>
                         </div>
                     </section>
                 </div>

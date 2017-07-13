@@ -70,21 +70,29 @@
                             <button class="button is-black" v-on:click="changeColor('#000000')"></button>
                         </div>
                         <div class="column is-3">
-                        <span v-on:click="changePenSize('13')" class="icon is-large"><i class="fa fa-circle"
-                                                                                        aria-hidden="true"></i></span>
-                            <span v-on:click="changePenSize('9')" class="icon is-medium"><i class="fa fa-circle"
-                                                                                            aria-hidden="true"></i></span>
-                            <span v-on:click="changePenSize('5')" class="icon"><i class="fa fa-circle"
-                                                                                  aria-hidden="true"></i></span>
-                            <span v-on:click="changePenSize('1')" class="icon is-small"><i class="fa fa-circle"
-                                                                                           aria-hidden="true"></i></span>
+                            <span v-on:click="changePenSize('13')" class="icon is-large">
+                                <i class="fa fa-circle" aria-hidden="true"></i>
+                            </span>
+                            <span v-on:click="changePenSize('9')" class="icon is-medium">
+                                <i class="fa fa-circle" aria-hidden="true"></i>
+                            </span>
+                            <span v-on:click="changePenSize('5')" class="icon">
+                                <i class="fa fa-circle" aria-hidden="true"></i>
+                            </span>
+                            <span v-on:click="changePenSize('1')" class="icon is-small">
+                                <i class="fa fa-circle" aria-hidden="true"></i>
+                            </span>
                         </div>
                     </div>
                 </section>
             </div>
             <div class="columns padding-top-10">
                 <div class="left-box">
+                    <div id="loading-process-bar" class="padding-20">
+                        <progress class="progress is-warning" value="90" max="100">90%</progress>
+                    </div>
                     <input v-on:change="onFileChange" type="file" id="fileUpload"/>
+
                     <canvas
                             v-on:mousedown="this.onMouseDown"
                             v-on:mousemove="this.onMouseMove"
@@ -92,28 +100,39 @@
                             id="canvas"></canvas>
                 </div>
                 <div class="right-box">
-                    <div class="chat column">
-                        <div class="chat-box">
-                            <ul id="chat-log" class="chat-log">
-                                <li style="text-align: center" id="own-nickname">----- {{nicknameKey}}님이 입장하였습니다 -----</li>
-                                <li v-for="message in this.messages">
-                                    {{message}}
-                                </li>
-                            </ul>
+                    <div class="chat column padding-0">
+                        <div style="padding: 0!important;" class="padding-0">
+                            <div class="inline-block">
+                                <img class="width-50" src="../assets/ic_user.png"/>
+                                <div class="inline-block vertical-align-top padding-left-10 padding-top-5">
+                                    <span>nicknameKey</span>
+                                </div>
+                            </div>
                         </div>
+                        <div class="padding-10">
+                            <div class="chat-box">
+                                <ul id="chat-log" class="chat-log">
+                                    <li style="text-align: center" id="own-nickname">----- {{nicknameKey}}님이 입장하였습니다 -----
+                                    </li>
+                                    <li v-for="message in this.messages">
+                                        {{message}}
+                                    </li>
+                                </ul>
+                            </div>
 
-                        <div class="chat-input-box">
-                            <div class="field is-grouped chat-input-form">
-                                <p class="control is-expanded">
-                                    <input class="input" type="text" placeholder="메세지를 입력하세요" autofocus
-                                           v-model="chatMessage"
-                                           v-on:keyup.enter="sendChat">
-                                </p>
-                                <p class="control">
-                                    <a class="button is-info" v-on:click="this.sendChat">
-                                        전송
-                                    </a>
-                                </p>
+                            <div class="chat-input-box">
+                                <div class="field is-grouped chat-input-form">
+                                    <p class="control is-expanded">
+                                        <input class="input" type="text" placeholder="메세지를 입력하세요" autofocus
+                                               v-model="chatMessage"
+                                               v-on:keyup.enter="sendChat">
+                                    </p>
+                                    <p class="control">
+                                        <a class="button is-info" v-on:click="this.sendChat">
+                                            전송
+                                        </a>
+                                    </p> f
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -144,8 +163,11 @@
           })
         })
       },
-      receiveMessage: function (message) {
-        this.messages.push('others : ' + message)
+
+      // 메세지 수신
+      receiveMessage: function (message, nicknameKey) {
+        this.messages.push(nicknameKey + ' : ' + message)
+        console.log(nicknameKey)
       }
     },
     /**
@@ -155,22 +177,23 @@
       this.ownNickname = document.getElementById('own-nickname').innerHTML
       this.canvas = document.getElementById('canvas')
       this.containerSection = document.getElementById('in-channel-section')
-      this.containerSection.style.display = 'none'
+//      this.containerSection.style.display = 'none'
       this.canvasContext = this.canvas.getContext('2d')
       this.canvasContext.strokeStyle = '#3dff22'
       this.canvasContext.lineJoin = 'round'
       this.canvasContext.lineWidth = 5
       this.canvas.width = window.innerWidth
       this.canvas.height = window.innerHeight
-      this.show('modal')
+//      this.show('modal')
+      this.receiveNickname()
     },
     data () {
       return {
         /**
          * 데이터 초기화
          */
-        passwordKey: '',
         nicknameKey: '',
+        passwordKey: '',
         isDrawingMode: false,
         savedDrawingData: [],
         chatMessage: '',
@@ -182,6 +205,12 @@
       }
     },
     methods: {
+      receiveNickname () {
+        this.nicknameKey.push()
+        console.log('this')
+        console.log('push nickname : ' + this.nicknameKey)
+      },
+
       onFileChange (e) {
         const files = e.target.files || e.dataTransfer.files
         if (!files.length) return
@@ -341,6 +370,8 @@
         this.$socket.emit('sendNickname', this.ownNickname)
         this.messages.push(this.nicknameKey + ' : ' + this.chatMessage)
         this.chatMessage = ''
+
+        console.log(this.nicknameKey) // 여긴 잘 찍히는데......
       },
       modal () {
         let obj = {
@@ -382,7 +413,7 @@
             position: fixed;
             padding: 10px;
             background-color: #D5D5D5;
-            bottom: 2%;
+            bottom: 1%;
             width: 23%;
         }
 
@@ -399,6 +430,10 @@
     .right-box {
         float: right;
         width: 35%;
+    }
+
+    .progress {
+        transition: all 0.5s ease;
     }
 
 </style>
