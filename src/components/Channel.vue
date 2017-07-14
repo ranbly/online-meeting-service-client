@@ -9,7 +9,7 @@
                 <div v-if="configPassword">
                     <p class="h5 text-center padding-top-10 color-light is-active">입장하려면 비밀번호를 입력하세요..</p>
                 </div>
-                <div v-if="errorPassword == 1" id="passwordIncorrectMsg" style="margin-bottom: -30px;">
+                <div v-if="errorPassword == true" id="passwordIncorrectMsg" style="margin-bottom: -30px;">
                     <p class="h4 text-center padding-top-10">비밀번호가 틀렸습니다. 다시 한 번 확인해 주세요! </p>
                 </div>
                 <div class="columns is-12">
@@ -186,7 +186,6 @@
       this.canvas.height = window.innerHeight
       this.show('modal')
       this.receiveNickname()
-      this.errorPassword = 0
     },
     data () {
       return {
@@ -203,7 +202,7 @@
         myCanvasPenSize: '',
         time: 0,
         duration: 5000, // 대기시간 조정
-        errorPassword: ''
+        errorPassword: false
       }
     },
     methods: {
@@ -239,13 +238,13 @@
 
       configPassword (passwordKey) {
         if (this.passwordKey === '1234') {
-          this.errorPassword = 0
+          this.errorPassword = false
           this.hide('modal')
 
           this.show('setNicknameModal')
           this.setNickName()
         } else {
-          this.errorPassword = 1
+          this.errorPassword = true
         }
       },
 
