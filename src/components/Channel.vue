@@ -64,6 +64,12 @@
                 <section class="hero is-light">
                     <div class="columns padding-top-15 padding-bottom-5">
                         <div class="column is-4">
+                            <router-link v-bind:to="'/main'">
+                                <button class="button">
+                                    <span class="icon"><i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                    </span><p>방 나가기</p>
+                                </button>
+                            </router-link>
                             <button class="button" v-on:click="this.clear">그림 지우기</button>
                             <button class="button" v-on:click="changeColor('#FFFFFF')"></button>
                             <button class="button is-danger" v-on:click="changeColor('#ff2b56')"></button>
@@ -93,9 +99,6 @@
             </div>
             <div class="columns padding-top-10">
                 <div class="left-box">
-                    <div id="loading-process-bar" class="padding-20">
-                        <progress class="progress is-warning" value="90" max="100">90%</progress>
-                    </div>
                     <input v-on:change="onFileChange" type="file" id="fileUpload"/>
 
                     <canvas
@@ -110,7 +113,7 @@
                             <div class="inline-block">
                                 <img class="width-50" src="../assets/ic_user.png"/>
                                 <div class="inline-block vertical-align-top padding-left-10 padding-top-5">
-                                    <span>nicknameKey</span>
+                                    <span>{{nicknameKey}}</span>
                                 </div>
                             </div>
                         </div>
@@ -447,9 +450,4 @@
         float: right;
         width: 35%;
     }
-
-    .progress {
-        transition: all 0.5s ease;
-    }
-
 </style>

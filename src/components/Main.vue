@@ -1,10 +1,11 @@
 <template id="div-channel">
     <div class="margin-bottom-50">
         <div class="container">
-            <div class=" padding-bottom-50 text-left">
-                <div>
-                    <section class="hero is-primary">
-                        <div class="hero-body padding-left-50">
+            <div class="padding-bottom-50 text-left">
+                <div class="relative">
+                    <section class="hero is-primary absolute padding-right-45" style="
+                                    border: 1px white solid; left:32%; top:30%; z-index: 1;">
+                        <div class="hero-body padding-left-50 text-center">
                             <h1 class="title h1 NGB">
                                 실시간 온라인 회의 보조 서비스
                             </h1>
@@ -14,25 +15,33 @@
                             <div class="padding-top-20">
                                 <a class="button is-outlined is-medium">채널 만들기</a>
                             </div>
-                            <vue-particles style="position: relative; z-index: 1;"
-                                    color="#dedede"
-                                    :particleOpacity="0.9"
-                                    :particlesNumber="80"
-                                    shapeType="circle"
-                                    :particleSize="5"
-                                    linesColor="#ffffff"
-                                    :linesWidth="1"
-                                    :lineLinked="true"
-                                    :lineOpacity="0.7"
-                                    :linesDistance="150"
-                                    :moveSpeed="2"
-                                    :hoverEffect="true"
-                                    hoverMode="grab"
-                                    :clickEffect="true"
-                                    clickMode="push">
-                            </vue-particles>
                         </div>
                     </section>
+                    <vue-particles style="position: relative; background-color: #00d1b2!important;"
+                                   color="#dedede"
+                                   :particleOpacity="1"
+                                   :particlesNumber="80"
+                                   shapeType="circle"
+                                   :particleSize="5"
+                                   linesColor="#ffffff"
+                                   :linesWidth="1"
+                                   :lineLinked="true"
+                                   :lineOpacity="1"
+                                   :linesDistance="150"
+                                   :moveSpeed="2"
+                                   :hoverEffect="true"
+                                   hoverMode="grab"
+                                   :clickEffect="true"
+                                   clickMode="push">
+                    </vue-particles>
+                    <div class="relative">
+
+                        <div id="main-tooltip" class="absolute padding-15 h5"
+                             style="right: 3%; bottom: 3%; border-radius: 13px;color: white;background-color: #232323; z-index: 1;">
+                            <p>이 초록색 캔버스 어디든 마우스로 클릭해 보세요!</p>
+                            <div id="main-tooltip-triangle" class="absolute"></div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -63,7 +72,7 @@
                                         <a>{{channel.tag1}} </a>
                                         <a>{{channel.tag1}}</a>
                                         <br>
-                                        <small>11:09 PM - 1 Jan 2016</small>
+                                        <small>{{ Date() }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -145,13 +154,15 @@
                                                             <div class="padding-right-20">
                                                                 <p class="control">
                                                                     <label class="checkbox padding-top-5">
-                                                                        <input type="checkbox"><span class="padding-left-10 padding-top-5"> 비밀방</span>
+                                                                        <input type="checkbox"><span
+                                                                            class="padding-left-10 padding-top-5"> 비밀방</span>
                                                                     </label>
                                                                 </p>
                                                             </div>
                                                             <p class="control is-expanded">
                                                                 <input class="input"
-                                                                       type="password" placeholder="비밀방으로 설정할시 패스워드를 입력해주세요">
+                                                                       type="password"
+                                                                       placeholder="비밀방으로 설정할시 패스워드를 입력해주세요">
                                                             </p>
                                                         </div>
                                                     </div>
@@ -252,5 +263,32 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+    }
+
+    #main-tooltip {
+        -webkit-animation: myfirst 0.7s linear 1s infinite alternate; /*normal;  Chrome, Safari, Opera */
+        animation: myfirst 0.7s linear 1s infinite alternate; /*normal;  Standard syntax */
+
+        /* Standard syntax */
+        @keyframes myfirst {
+            0% {
+                opacity: 1;
+                bottom: 20px;
+            }
+            100% {
+                opacity: 1;
+                bottom: 30px;
+            }
+        }
+    }
+
+    #main-tooltip-triangle {
+        width: 0;
+        height: 0;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-bottom: 30px solid #232323;
+        border-radius: 3px;
+        top: -35%;
     }
 </style>
