@@ -67,7 +67,8 @@
                             <router-link v-bind:to="'/main'">
                                 <button class="button">
                                     <span class="icon"><i class="fa fa-arrow-left" aria-hidden="true"></i>
-                                    </span><p>방 나가기</p>
+                                    </span>
+                                    <p>방 나가기</p>
                                 </button>
                             </router-link>
                             <button class="button" v-on:click="this.clear">그림 지우기</button>
@@ -111,16 +112,22 @@
                     <div class="chat column padding-0">
                         <div style="padding: 0!important;" class="padding-0">
                             <div class="inline-block">
-                                <img class="width-50" src="../assets/ic_user.png"/>
-                                <div class="inline-block vertical-align-top padding-left-10 padding-top-5">
-                                    <span>{{nicknameKey}}</span>
+                                <div class="padding-20">
+                                    <img class="width-50" src="../assets/ic_user.png"/>
+                                    <div class="inline-block vertical-align-top padding-left-10 padding-top-5">
+                                        <span class="NGB">{{nicknameKey}}</span>
+                                        <div class="vertical-align-bottom">
+                                            <div class="online inline-block"></div>
+                                            online
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="padding-10">
                             <div class="chat-box">
                                 <ul id="chat-log" class="chat-log">
-                                    <li style="text-align: center" id="own-nickname">----- {{nicknameKey}}님이 입장하였습니다 -----
+                                    <li id="own-nickname" class="text-center">----- {{nicknameKey}}님이 입장하였습니다 -----
                                     </li>
                                     <li v-for="message in this.messages">
                                         {{message}}
@@ -435,7 +442,6 @@
             bottom: 1%;
             width: 23%;
         }
-
         &-box {
             height: 80%;
         }
@@ -449,6 +455,14 @@
     .right-box {
         float: right;
         width: 35%;
+    }
+
+    .online {
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
+        background-color: #23d160;
+        border: 1px #1cb251 solid;
     }
 
     canvas {
