@@ -6,10 +6,10 @@
                :height="300">
             <div class="padding-30">
                 <p class="h2 NGB text-center padding-top-20">Enter Password</p>
-                <div>
+                <div v-if="configPassword">
                     <p class="h5 text-center padding-top-10 color-light is-active">입장하려면 비밀번호를 입력하세요..</p>
                 </div>
-                <div id="passwordIncorrectMsg" v-show="false" v-if="configPassword" style="margin-bottom: -30px;">
+                <div v-if="errorPassword == 1" id="passwordIncorrectMsg" style="margin-bottom: -30px;">
                     <p class="h4 text-center padding-top-10">비밀번호가 틀렸습니다. 다시 한 번 확인해 주세요! </p>
                 </div>
                 <div class="columns is-12">
@@ -131,7 +131,7 @@
                                         <a class="button is-info" v-on:click="this.sendChat">
                                             전송
                                         </a>
-                                    </p> f
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -177,15 +177,16 @@
       this.ownNickname = document.getElementById('own-nickname').innerHTML
       this.canvas = document.getElementById('canvas')
       this.containerSection = document.getElementById('in-channel-section')
-//      this.containerSection.style.display = 'none'
+      this.containerSection.style.display = 'none'
       this.canvasContext = this.canvas.getContext('2d')
       this.canvasContext.strokeStyle = '#3dff22'
       this.canvasContext.lineJoin = 'round'
       this.canvasContext.lineWidth = 5
       this.canvas.width = window.innerWidth
       this.canvas.height = window.innerHeight
-//      this.show('modal')
+      this.show('modal')
       this.receiveNickname()
+      this.errorPassword = 0
     },
     data () {
       return {
@@ -201,7 +202,8 @@
         myCanvasColor: '',
         myCanvasPenSize: '',
         time: 0,
-        duration: 5000 // 대기시간 조정
+        duration: 5000, // 대기시간 조정
+        errorPassword: ''
       }
     },
     methods: {
@@ -237,13 +239,13 @@
 
       configPassword (passwordKey) {
         if (this.passwordKey === '1234') {
+          this.errorPassword = 0
           this.hide('modal')
 
           this.show('setNicknameModal')
           this.setNickName()
         } else {
-          console.log('password false')
-          return false
+          this.errorPassword = 1
         }
       },
 

@@ -83,7 +83,7 @@
                                            :height="550">
                                         <div class="padding-30">
                                             <div>
-                                                <p class="h1 NGB text-center padding-top-20">새로운 채널 만들기</p>
+                                                <p class="h1 NGB text-center padding-top-20 test-color">새로운 채널 만들기</p>
                                                 <p class="h4 text-center padding-top-10">채널을 만들어 링크를 공유해보세요</p>
                                             </div>
                                             <div style="margin-left: -90px"
@@ -233,12 +233,19 @@
 </script>
 
 <style lang="scss">
+
+    @import "../assets/variable";
+
     .make-channel {
         height: 180px !important;
     }
 
     .make-channel-forms {
         padding-bottom: 20px;
+    }
+
+    .test-color {
+        color: $brand-primary;
     }
 
     .channel-list-content {
