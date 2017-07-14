@@ -10,13 +10,15 @@
 <script>
   import AppNav from './components/AppNav.vue'
   import VueParticles from '../node_modules/vue-particles/src/vue-particles/vue-particles'
-  import AppFooter from './components/Footer'
+  import AppFooter from './components/Footer.vue'
+  import About from './components/About.vue'
   export default {
     name: 'app',
     components: {
       AppFooter,
       VueParticles,
-      AppNav
+      AppNav,
+      About
     }
   }
 </script>

@@ -63,7 +63,7 @@
             <div>
                 <section class="hero is-light">
                     <div class="columns padding-top-15 padding-bottom-5">
-                        <div class="column is-4">
+                        <div class="column">
                             <router-link v-bind:to="'/main'">
                                 <button class="button">
                                     <span class="icon"><i class="fa fa-arrow-left" aria-hidden="true"></i>
@@ -80,7 +80,7 @@
                             <button class="button is-dark" v-on:click="changeColor('#2f2f2f')"></button>
                             <button class="button is-black" v-on:click="changeColor('#000000')"></button>
                         </div>
-                        <div class="column is-3">
+                        <div class="column">
                             <span v-on:click="changePenSize('13')" class="icon is-large">
                                 <i class="fa fa-circle" aria-hidden="true"></i>
                             </span>
@@ -449,5 +449,9 @@
     .right-box {
         float: right;
         width: 35%;
+    }
+
+    canvas {
+        cursor: url("../assets/img_cursor.png"), auto;
     }
 </style>

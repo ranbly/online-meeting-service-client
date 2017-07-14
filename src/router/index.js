@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Channel from '@/components/Channel'
 import Main from '@/components/Main'
+import About from '@/components/About'
 
 import VueSocketio from 'vue-socket.io'
 
@@ -20,6 +21,11 @@ export default new Router({
       path: '/main',
       name: 'main',
       component: Main
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: About
     }
   ]
 })

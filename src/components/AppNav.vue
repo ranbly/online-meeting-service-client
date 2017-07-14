@@ -12,7 +12,7 @@
                 </router-link>
                 <a class="nav-item is-tab is-hidden-mobile">Features</a>
                 <a class="nav-item is-tab is-hidden-mobile">Pricing</a>
-                <a class="nav-item is-tab is-hidden-mobile">About</a>
+                <router-link v-bind:to="'/about'"><a class="nav-item is-tab is-hidden-mobile">About</a></router-link>
             </div>
             <span class="nav-toggle">
       <span></span>
@@ -39,6 +39,15 @@
 
 <script>
   export default {
-    name: 'app-nav'
+    name: 'app-nav',
+    mounted: function () {
+    },
+    data: function () {
+
+    },
+    methods: {
+
+    }
   }
 </script>
+<style></style>
