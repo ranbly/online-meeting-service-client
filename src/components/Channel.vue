@@ -10,7 +10,8 @@
                     <p class="h5 text-center padding-top-10 color-light is-active">입장하려면 비밀번호를 입력하세요..</p>
                 </div>
                 <div v-if="errorPassword == true" id="passwordIncorrectMsg" style="margin-bottom: -30px;">
-                    <p class="h4 text-center padding-top-10">비밀번호가 틀렸습니다. 다시 한 번 확인해 주세요! </p>
+                    <p class="h5 text-center NGB color-warning text-underline padding-top-10 ">
+                        비밀번호가 틀렸습니다. 다시 한 번 확인해 주세요! </p>
                 </div>
                 <div class="columns is-12">
                     <input v-model="passwordKey" v-on:keyup.enter="configPassword" autofocus
@@ -37,6 +38,10 @@
                 <p class="h2 NGB text-center padding-top-20">Set Nickname</p>
                 <div>
                     <p class="h5 text-center padding-top-10 color-light is-active">채널에서 사용할 닉네임을 설정해 주세요.</p>
+                </div>
+                <div v-if="checkNull" style="margin-bottom: -30px;">
+                    <p class="h5 text-center NGB color-warning text-underline padding-top-10 ">
+                        닉네임은 최소 한글자 이상입니다. </p>
                 </div>
                 <div class="columns is-12">
                     <input v-model="nicknameKey" v-on:keyup.enter="logInChannel" autofocus="autofocus"
@@ -177,7 +182,9 @@
       this.ownNickname = document.getElementById('own-nickname').innerHTML
       this.canvas = document.getElementById('canvas')
       this.containerSection = document.getElementById('in-channel-section')
+        /* canvas container */
       this.containerSection.style.display = 'none'
+        /* canvas conatiner 입장 전 hide */
       this.canvasContext = this.canvas.getContext('2d')
       this.canvasContext.strokeStyle = '#3dff22'
       this.canvasContext.lineJoin = 'round'
@@ -190,7 +197,7 @@
     data () {
       return {
         /**
-         * 데이터 초기화
+         * 데이터 초기화 (정의해줘야 변수 쓸 수 있음!!!!)
          */
         nicknameKey: '',
         passwordKey: '',
@@ -202,7 +209,8 @@
         myCanvasPenSize: '',
         time: 0,
         duration: 5000, // 대기시간 조정
-        errorPassword: false
+        errorPassword: false,
+        checkNull: false
       }
     },
     methods: {
@@ -245,6 +253,7 @@
           this.setNickName()
         } else {
           this.errorPassword = true
+          this.passwordKey = ''
         }
       },
 
@@ -255,8 +264,12 @@
       },
 
       logInChannel () {
-        this.hide('setNicknameModal')
-        this.containerSection.style.display = 'block'
+        if (this.nicknameKey !== '') {
+          this.hide('setNicknameModal')
+          this.containerSection.style.display = 'block'
+        } else {
+          this.checkNull = true
+        }
       },
 
       onMouseDown (event) {
@@ -388,6 +401,8 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
+    @import "../assets/variable";
+
     .name {
         width: 10%;
     }

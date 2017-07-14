@@ -245,7 +245,7 @@
     }
 
     .test-color {
-        color: $brand-primary;
+        color: $color-red;
     }
 
     .channel-list-content {
