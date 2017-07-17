@@ -161,10 +161,10 @@
                                                             </div>
                                                             <p class="control is-expanded">
                                                                 <input
-                                                                       v-model="passwordKey"
-                                                                       class="input"
-                                                                       type="password"
-                                                                       placeholder="비밀방으로 설정할시 패스워드를 입력해주세요">
+                                                                        v-model="passwordKey"
+                                                                        class="input"
+                                                                        type="password"
+                                                                        placeholder="비밀방으로 설정할시 패스워드를 입력해주세요">
                                                             </p>
                                                         </div>
                                                     </div>
@@ -186,6 +186,8 @@
     </div>
 </template>
 <script>
+  import store from '../store'
+
   export default {
     name: 'main',
     data: function () {
@@ -201,11 +203,9 @@
             tag1: '#responsive'
           }
         ],
-        passwordKey: ''
+        passwordKey: '',
+        sharedState: store.state
       }
-    },
-    created () {
-      this.$eventBus.$on('message', this.onReceive)
     },
     methods: {
       show () {
@@ -235,10 +235,11 @@
         this.addChannelTag1 = ''
 
         this.hide()
-
-        console.log('password : ' + this.passwordKey)
-        this.$eventBus.$emit('message', this.passwordKey)
+        console.log('this is pw key : ' + this.passwordKey)
       }
+    },
+    state: {
+      passwordKeyState: this.passwordKey
     }
   }
 </script>
@@ -290,7 +291,7 @@
 
     //channel-card animation
     .channel-card {
-        transition: box-shadow 400ms cubic-bezier(.2,0,.7,1), transform 200ms cubic-bezier(.2,0,.7,1); /* 여기서 속도를 지정*/
+        transition: box-shadow 400ms cubic-bezier(.2, 0, .7, 1), transform 200ms cubic-bezier(.2, 0, .7, 1); /* 여기서 속도를 지정*/
         &:hover { /* hover 시 속성 이벤트 */
             box-shadow: 0 0 1px 5px rgba(#00d1b2, 0.4),
             0 0 1px 10px rgba(#00d1b2, 0.1),

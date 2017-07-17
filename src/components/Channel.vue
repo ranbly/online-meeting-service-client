@@ -73,7 +73,7 @@
                                     </button>
                                     <div v-for="item in list">
                                         <div v-if="list"
-                                            title="event receive complate">
+                                             title="event receive complate">
                                         </div>
                                     </div>
                                 </router-link>
@@ -178,6 +178,8 @@
 </template>
 
 <script>
+  import main from '../components/Main.vue'
+
   export default {
     name: 'live_drawing_room',
     sockets: {
@@ -242,22 +244,11 @@
         duration: 5000, // 대기시간 조정
         errorPassword: false,
         checkNull: false,
-        list: []
+        list: [],
+        sharedState: main.state
       }
     },
-    created () {
-      this.$eventBus.$on('message', this.onReceive)
-      console.log('created : ' + this.$eventBus.$on('message', this.onReceive))
-      console.log('password key 1: ' + this.$eventBus.$on('message'))
-    },
     methods: {
-      onReceive (passwordKey) {
-        const self = this
-        this.list.push(passwordKey)
-        setTimeout(function () {
-          self.list.shift()
-        }, 5000)
-      },
       receiveNickname () {
         this.nicknameKey.push()
         console.log('this')
@@ -314,6 +305,7 @@
         } else {
           this.checkNull = true
         }
+        console.log('this is pw key pass !!!!! : ' + this.sharedState.passwordKeyState)
       },
 
       onMouseDown (event) {

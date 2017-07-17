@@ -3,11 +3,13 @@
 // library import section
 import Vue from 'vue'
 import App from './App'
+import Vuex from 'vuex'
 import router from './router'
 import 'bulma/css/bulma.css'
 import vmodal from 'vue-js-modal'
 import VueParticles from 'vue-particles'
 
+Vue.use(Vuex)
 Vue.config.productionTip = false
 Vue.use(vmodal)
 Vue.use(VueParticles)
