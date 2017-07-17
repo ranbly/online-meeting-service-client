@@ -149,7 +149,7 @@
                                 <ul id="chat-log" class="chat-log">
                                     <li id="own-nickname" class="text-center">----- {{nicknameKey}}님이 입장하였습니다 -----
                                     </li>
-                                    <li v-for="message in this.messages">
+                                    <li v-for="message in this.messages" class="chat-message-ui text-right">
                                         {{message}}
                                     </li>
                                 </ul>
@@ -470,6 +470,13 @@
         }
         &-box {
             height: 80%;
+        }
+        &-message-ui {
+            background-color: #2c3e50;
+            padding: 10px;
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 5px;
         }
     }
 
