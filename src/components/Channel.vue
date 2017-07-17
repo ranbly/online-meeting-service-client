@@ -224,8 +224,7 @@
       this.canvas.width = window.innerWidth
       this.canvas.height = window.innerHeight
       this.show('modal')
-      this.receiveNickname()
-      this.passwordKey = this.$eventBus.$on('message')
+//      this.receiveNickname()
     },
     data () {
       return {
@@ -249,11 +248,11 @@
       }
     },
     methods: {
-      receiveNickname () {
-        this.nicknameKey.push()
-        console.log('this')
-        console.log('push nickname : ' + this.nicknameKey)
-      },
+//      receiveNickname () {
+//        this.nicknameKey.push()
+//        console.log('this')
+//        console.log('push nickname : ' + this.nicknameKey)
+//      },
 
       onFileChange (e) {
         const files = e.target.files || e.dataTransfer.files
@@ -280,7 +279,7 @@
       },
 
       configPassword (passwordKey) {
-        if (this.passwordKey === '1234') {
+        if (this.passwordKey === this.sharedState.passwordKeyState) {
           this.errorPassword = false
           this.hide('modal')
 
@@ -290,14 +289,9 @@
           this.errorPassword = true
           this.passwordKey = ''
         }
-      },
 
-      setNickName () {
-        if (this.nicknameKey.type.string) {
-          this.hide('setNicknameModal')
-        }
+        console.log('pwd', this.passwordKeyConfig)
       },
-
       logInChannel () {
         if (this.nicknameKey !== '') {
           this.hide('setNicknameModal')
@@ -418,18 +412,16 @@
         if (this.chatMessage === '') return console.error('비어있음')
         this.$socket.emit('sendMessage', this.chatMessage)
         this.$socket.emit('sendNickname', this.ownNickname)
-        this.messages.push(this.nicknameKey + ' : ' + this.chatMessage)
+//        this.messages.push(this.nicknameKey + ' : ' + this.chatMessage)
         this.chatMessage = ''
 
-        console.log(this.nicknameKey) // 여긴 잘 찍히는데......
-      },
-      modal () {
-        let obj = {
-          title: 'Alert Title',
-          message: 'Alert Message',
-          type: 'info'
-        }
-        this.$refs.simplert.openSimplert(obj)
+//        console.log(this.nicknameKey) // 여긴 잘 찍히는데......
+      }
+    },
+    computed: {
+        /* 값을 꺼내오아앙ㅇㅇ */
+      passwordKeyConfig: function () {
+        return this.$store.getters.getChannelPassword
       }
     }
   }

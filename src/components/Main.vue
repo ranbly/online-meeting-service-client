@@ -186,8 +186,6 @@
     </div>
 </template>
 <script>
-  import store from '../store'
-
   export default {
     name: 'main',
     data: function () {
@@ -203,8 +201,7 @@
             tag1: '#responsive'
           }
         ],
-        passwordKey: '',
-        sharedState: store.state
+        passwordKey: ''
       }
     },
     methods: {
@@ -234,12 +231,11 @@
         this.addChannelContent = ''
         this.addChannelTag1 = ''
 
+        this.$store.dispatch('setChannelPassword', this.passwordKey)
+
         this.hide()
         console.log('this is pw key : ' + this.passwordKey)
       }
-    },
-    state: {
-      passwordKeyState: this.passwordKey
     }
   }
 </script>
