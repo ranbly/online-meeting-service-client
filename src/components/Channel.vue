@@ -62,51 +62,66 @@
         <div id="in-channel-section">
             <div>
                 <section class="hero is-light">
-                    <div class="columns padding-top-15 padding-bottom-5">
-                        <div class="column">
-                            <router-link v-bind:to="'/main'">
-                                <button class="button">
+                    <div class="container">
+                        <div class="columns padding-top-15 padding-bottom-5">
+                            <div class="column is-2 text-left">
+                                <router-link v-bind:to="'/main'">
+                                    <button class="button">
                                     <span class="icon"><i class="fa fa-arrow-left" aria-hidden="true"></i>
                                     </span>
-                                    <p>방 나가기</p>
-                                </button>
-                            </router-link>
-                            <button class="button" v-on:click="this.clear">그림 지우기</button>
-                            <button class="button" v-on:click="changeColor('#FFFFFF')"></button>
-                            <button class="button is-danger" v-on:click="changeColor('#ff2b56')"></button>
-                            <button class="button is-warning" v-on:click="changeColor('#ffdb4a')"></button>
-                            <button class="button is-success" v-on:click="changeColor('#22c65b')"></button>
-                            <button class="button is-primary" v-on:click="changeColor('#00c4a7')"></button>
-                            <button class="button is-info" v-on:click="changeColor('#276cda')"></button>
-                            <button class="button is-dark" v-on:click="changeColor('#2f2f2f')"></button>
-                            <button class="button is-black" v-on:click="changeColor('#000000')"></button>
-                        </div>
-                        <div class="column">
+                                        <p>방 나가기</p>
+                                    </button>
+                                </router-link>
+                            </div>
+                            <div class="column is-4">
+                                <button class="button" v-on:click="this.clear">그림 지우기</button>
+                                <button class="button" v-on:click="changeColor('#FFFFFF')"></button>
+                                <button class="button is-danger" v-on:click="changeColor('#ff2b56')"></button>
+                                <button class="button is-warning" v-on:click="changeColor('#ffdb4a')"></button>
+                                <button class="button is-success" v-on:click="changeColor('#22c65b')"></button>
+                                <button class="button is-primary" v-on:click="changeColor('#00c4a7')"></button>
+                                <button class="button is-info" v-on:click="changeColor('#276cda')"></button>
+                                <button class="button is-dark" v-on:click="changeColor('#2f2f2f')"></button>
+                                <button class="button is-black" v-on:click="changeColor('#000000')"></button>
+                            </div>
+                            <div class="column is-2">
                             <span v-on:click="changePenSize('13')" class="icon is-large">
                                 <i class="fa fa-circle" aria-hidden="true"></i>
                             </span>
-                            <span v-on:click="changePenSize('9')" class="icon is-medium">
+                                <span v-on:click="changePenSize('9')" class="icon is-medium">
                                 <i class="fa fa-circle" aria-hidden="true"></i>
                             </span>
-                            <span v-on:click="changePenSize('5')" class="icon">
+                                <span v-on:click="changePenSize('5')" class="icon">
                                 <i class="fa fa-circle" aria-hidden="true"></i>
                             </span>
-                            <span v-on:click="changePenSize('1')" class="icon is-small">
+                                <span v-on:click="changePenSize('1')" class="icon is-small">
                                 <i class="fa fa-circle" aria-hidden="true"></i>
                             </span>
+                            </div>
+                            <div class="column is-2">
+                                <div>
+                                </div>
+                            </div>
+                            <div class="column is-2">
+                                <div class="text-right fileUpload padding-top-5">
+
+                                    <label for="fileUpload"><span class="icon margin-right-10 margin-left-5">
+                                        <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                    </span>이미지 삽입하기</label>
+                                    <input v-on:change="onFileChange" type="file" id="fileUpload"/>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
             </div>
             <div class="columns padding-top-10">
                 <div class="left-box">
-                    <input v-on:change="onFileChange" type="file" id="fileUpload"/>
-
                     <canvas
                             v-on:mousedown="this.onMouseDown"
                             v-on:mousemove="this.onMouseMove"
                             v-on:mouseup="this.onMouseUp"
-                            id="canvas"></canvas>
+                            id="channel_canvas"></canvas>
                 </div>
                 <div class="right-box">
                     <div class="chat column padding-0">
@@ -190,7 +205,7 @@
      */
     mounted: function () {
       this.ownNickname = document.getElementById('own-nickname').innerHTML
-      this.canvas = document.getElementById('canvas')
+      this.canvas = document.getElementById('channel_canvas')
       this.containerSection = document.getElementById('in-channel-section')
         /* canvas container */
       this.containerSection.style.display = 'none'
@@ -465,7 +480,26 @@
         border: 1px #1cb251 solid;
     }
 
-    canvas {
+    #channel_canvas {
         cursor: url("../assets/img_cursor.png"), auto;
+    }
+
+    //파일 업로드 input form style
+    .fileUpload label {
+        display: inline;
+        padding: .5em .75em;
+        font-size: inherit;
+        line-height: normal;
+        background-color: #fdfdfd;
+        cursor: pointer;
+        border: 1px solid #e2e2e2;
+        border-radius: .25em;
+    }
+
+    .fileUpload input[type="file"] { /* 파일 필드 숨기기*/
+        width: 100px;
+        height: 50px;
+        display: none;
+        clip: rect(0, 0, 0, 0);
     }
 </style>

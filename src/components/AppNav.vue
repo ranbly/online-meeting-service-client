@@ -39,15 +39,7 @@
 
 <script>
   export default {
-    name: 'app-nav',
-    mounted: function () {
-    },
-    data: function () {
-
-    },
-    methods: {
-
-    }
+    name: 'app-nav'
   }
 </script>
 <style></style>

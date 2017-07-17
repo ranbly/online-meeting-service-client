@@ -51,7 +51,7 @@
                     <div class="columns is-multiline">
                         <div class="channel-div column is-6" v-for="channel in this.channels">
                             <div class="margin-bottom-5 card height-180">
-                                <div class="card-content">
+                                <div class="channel-card card-content cursor">
                                     <div class="media">
                                         <div class="media-left">
                                             <figure class="image is-48x48">
@@ -81,9 +81,9 @@
 
                         <div class="column is-6 make-channel">
                             <div class="margin-bottom-5 card">
-                                <div class="card-content make-channel">
-                                    <div class="content">
-                                        <p v-on:click="show" class="h1 padding-top-35"><a>+ 채널 생성하기</a></p>
+                                <div class="card-content make-channel channel-card cursor">
+                                    <div v-on:click="show" class="content">
+                                        <p class="h1 padding-top-35 primary-color">+ 채널 생성하기</p>
                                     </div>
 
                                     <!-- 채널 생성 modal -->
@@ -160,7 +160,9 @@
                                                                 </p>
                                                             </div>
                                                             <p class="control is-expanded">
-                                                                <input class="input"
+                                                                <input
+                                                                       v-model="passwordKey"
+                                                                       class="input"
                                                                        type="password"
                                                                        placeholder="비밀방으로 설정할시 패스워드를 입력해주세요">
                                                             </p>
@@ -198,7 +200,8 @@
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             tag1: '#responsive'
           }
-        ]
+        ],
+        passwordKey: ''
       }
     },
     methods: {
@@ -214,19 +217,13 @@
         const newChannelTitle = this.addChannelTitle.trim()
         const newChannelContent = this.addChannelContent.trim()
         const newChannelTag1 = this.addChannelTag1.trim()
-//        const newChannelTag2 = this.addChannelTag2.trim()
-//        const newChannelTag3 = this.addChannelTag3.trim()
+        const newPassword = this.passwordKey.trim()
 
-//        if (!newChannelTitle || !newChannelContent ||
-//          !(newChannelTag1 || newChannelTag2 || newChannelTag3)) {
-//          return
-//        }
         this.channels.push({
           title: newChannelTitle,
           content: newChannelContent,
           tag1: '#' + newChannelTag1,
-//          tag2: '#' + newChannelTag2,
-//          tag3: '#' + newChannelTag3,
+
           done: false
         })
 
@@ -234,10 +231,10 @@
         this.addChannelTitle = ''
         this.addChannelContent = ''
         this.addChannelTag1 = ''
-//        this.addChannelTag2 = ''
-//        this.addChannelTag3 = ''
 
         this.hide()
+
+        console.log('password : ' + newPassword)
       }
     }
   }
@@ -287,4 +284,16 @@
         border-radius: 3px;
         top: -35%;
     }
+
+    //channel-card animation
+    .channel-card {
+        transition: box-shadow 400ms cubic-bezier(.2,0,.7,1), transform 200ms cubic-bezier(.2,0,.7,1); /* 여기서 속도를 지정*/
+        &:hover { /* hover 시 속성 이벤트 */
+            box-shadow: 0 0 1px 5px rgba(#00d1b2, 0.4),
+            0 0 1px 10px rgba(#00d1b2, 0.1),
+            0 0 1px 15px rgba(#00d1b2, 0.1);
+        }
+    }
+
+
 </style>
