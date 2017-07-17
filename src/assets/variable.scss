@@ -1,0 +1,14 @@
+/*
+ * Created by Uran...
+ * variable.scss
+ * setting global style
+ */
+$brand-primary:                #00d1b2!default;
+$brand-primary-darken:         darken(#00d1b2, 100%) !default; // #337ab7
+$color-red:                    #E91E63!default;
+$brand-black:                  #444 !default;
+
+//sample
+.primary-color {
+  color: $brand-primary;
+}

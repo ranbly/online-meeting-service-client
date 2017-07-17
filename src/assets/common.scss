@@ -1,0 +1,238 @@
+@import "variable.scss";
+
+input {
+  margin: 0 !important;
+}
+
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+// margin
+@mixin margin-top($pixel) {
+  .margin-top-#{$pixel} {
+    margin-top: $pixel+px !important;
+  }
+}
+
+@mixin margin-left($pixel) {
+  .margin-left-#{$pixel} {
+    margin-left: $pixel+px !important;
+  }
+}
+
+@mixin margin-right($pixel) {
+  .margin-right-#{$pixel} {
+    margin-right: $pixel+px !important;
+  }
+}
+
+@mixin margin-bottom($pixel) {
+  .margin-bottom-#{$pixel} {
+    margin-bottom: $pixel+px !important;
+  }
+}
+
+@mixin margin($pixel) {
+  .margin-#{$pixel} {
+    margin: $pixel+px !important;
+  }
+}
+
+@mixin make-margin($i: 0) {
+  @for $i from 0 through 21 {
+    @include margin-top($i * 5);
+    @include margin-bottom($i * 5);
+    @include margin-left($i * 5);
+    @include margin-right($i * 5);
+    @include margin($i * 5);
+  }
+}
+
+@include make-margin();
+
+// padding
+@mixin padding-top($pixel) {
+  .padding-top-#{$pixel} {
+    padding-top: $pixel+px !important;
+  }
+}
+
+@mixin padding-left($pixel) {
+  .padding-left-#{$pixel} {
+    padding-left: $pixel+px !important;
+  }
+}
+
+@mixin padding-right($pixel) {
+  .padding-right-#{$pixel} {
+    padding-right: $pixel+px !important;
+  }
+}
+
+@mixin padding-bottom($pixel) {
+  .padding-bottom-#{$pixel} {
+    padding-bottom: $pixel+px !important;
+  }
+}
+
+// padding-all
+@mixin padding($pixel) {
+  .padding-#{$pixel} {
+    padding: $pixel+px !important;
+  }
+}
+
+@mixin make-padding($i: 0) {
+  @for $i from 0 through 21 {
+    @include padding-top($i * 5);
+    @include padding-bottom($i * 5);
+    @include padding-left($i * 5);
+    @include padding-right($i * 5);
+    @include padding($i * 5);
+  }
+}
+
+@include make-padding();
+
+//width & height
+@mixin width($pixel) {
+  .width-#{$pixel} {
+    width: $pixel+px !important;
+  }
+
+  // width : 100% 이하 size
+  .width-#{$pixel}per {
+    width: percentage($pixel / 100) !important; //동작안함!?
+  }
+}
+
+@mixin height($pixel) {
+  .height-#{$pixel} {
+    height: $pixel+px !important;
+  }
+}
+
+@mixin make-width-height($i: 0) {
+  @for $i from 0 through 100 {
+    @include width($i * 5);
+    @include height($i * 5);
+  }
+}
+
+@include make-width-height()
+
+//text-align
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+//h1~h6
+.h1 {
+  font-size: 32px;
+}
+
+.h2 {
+  font-size: 24px;
+}
+
+.h3 {
+  font-size: 19px;
+}
+
+.h4 {
+  font-size: 16px;
+}
+
+.h5 {
+  font-size: 14px;
+}
+
+.h6 {
+  font-size: 13px;
+}
+
+//text weight
+.NGL {
+  font-weight: 300 !important;
+}
+
+.NGR {
+  font-weight: 500 !important;
+}
+
+.NGB {
+  font-weight: 700 !important;
+}
+
+//display
+.inline-block {
+  display: inline-block !important;
+}
+
+.block {
+  display: block !important;
+}
+
+.inline {
+  display: inline !important;
+}
+
+//vertical-align
+.vertical-align-top {
+  vertical-align: top;
+}
+
+.vertical-align-bottom {
+  vertical-align: bottom;
+}
+
+.vertical-align-middle {
+  vertical-align: middle;
+}
+
+//font-color
+.color-warning {
+  color: $color-red;
+}
+
+
+//text-style {
+.text-underline {
+  text-decoration: underline;
+}
+
+
+//position
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.fixed {
+  position: fixed;
+}
+
+//cursor {
+.cursor {
+  cursor: pointer;
+}
