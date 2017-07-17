@@ -71,6 +71,11 @@
                                     </span>
                                         <p>방 나가기</p>
                                     </button>
+                                    <div v-for="item in list">
+                                        <div v-if="list"
+                                            title="event receive complate">
+                                        </div>
+                                    </div>
                                 </router-link>
                             </div>
                             <div class="column is-4">
@@ -218,6 +223,7 @@
       this.canvas.height = window.innerHeight
       this.show('modal')
       this.receiveNickname()
+      this.passwordKey = this.$eventBus.$on('message')
     },
     data () {
       return {
@@ -235,10 +241,23 @@
         time: 0,
         duration: 5000, // 대기시간 조정
         errorPassword: false,
-        checkNull: false
+        checkNull: false,
+        list: []
       }
     },
+    created () {
+      this.$eventBus.$on('message', this.onReceive)
+      console.log('created : ' + this.$eventBus.$on('message', this.onReceive))
+      console.log('password key 1: ' + this.$eventBus.$on('message'))
+    },
     methods: {
+      onReceive (passwordKey) {
+        const self = this
+        this.list.push(passwordKey)
+        setTimeout(function () {
+          self.list.shift()
+        }, 5000)
+      },
       receiveNickname () {
         this.nicknameKey.push()
         console.log('this')

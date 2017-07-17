@@ -204,6 +204,9 @@
         passwordKey: ''
       }
     },
+    created () {
+      this.$eventBus.$on('message', this.onReceive)
+    },
     methods: {
       show () {
         this.$modal.show('make-channel-modal')
@@ -217,7 +220,6 @@
         const newChannelTitle = this.addChannelTitle.trim()
         const newChannelContent = this.addChannelContent.trim()
         const newChannelTag1 = this.addChannelTag1.trim()
-        const newPassword = this.passwordKey.trim()
 
         this.channels.push({
           title: newChannelTitle,
@@ -234,7 +236,8 @@
 
         this.hide()
 
-        console.log('password : ' + newPassword)
+        console.log('password : ' + this.passwordKey)
+        this.$eventBus.$emit('message', this.passwordKey)
       }
     }
   }
