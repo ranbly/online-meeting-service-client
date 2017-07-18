@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,4 +12,18 @@
 <div id="app"></div>
 <!-- built files will be auto injected -->
 </body>
+<!-- firebase setting -->
+<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  const config = {
+    apiKey: "AIzaSyBUg7_P0AVmhkGmPxki9mZMMw6tGLDxGXQ",
+    authDomain: "meet-me-by-drawing.firebaseapp.com",
+    databaseURL: "https://meet-me-by-drawing.firebaseio.com",
+    projectId: "meet-me-by-drawing",
+    storageBucket: "meet-me-by-drawing.appspot.com",
+    messagingSenderId: "387562231506"
+  };
+  firebase.initializeApp(config);
+</script>
 </html>

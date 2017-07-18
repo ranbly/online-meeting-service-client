@@ -272,6 +272,7 @@
 
       show (modalName) {
         this.$modal.show(modalName)
+        console.log('this is pw key pass !!!!! : ' + this.passwordKeyConfig)
       },
 
       hide (modalName) {
@@ -279,7 +280,7 @@
       },
 
       configPassword (passwordKey) {
-        if (this.passwordKey === this.sharedState.passwordKeyState) {
+        if (this.passwordKey === this.passwordKeyConfig) {
           this.errorPassword = false
           this.hide('modal')
 
@@ -292,6 +293,7 @@
 
         console.log('pwd', this.passwordKeyConfig)
       },
+
       logInChannel () {
         if (this.nicknameKey !== '') {
           this.hide('setNicknameModal')
@@ -299,7 +301,12 @@
         } else {
           this.checkNull = true
         }
-        console.log('this is pw key pass !!!!! : ' + this.sharedState.passwordKeyState)
+      },
+
+      setNickName () {
+        if (this.nicknameKey) {
+          this.hide('setNicknameModal')
+        }
       },
 
       onMouseDown (event) {
@@ -412,14 +419,14 @@
         if (this.chatMessage === '') return console.error('비어있음')
         this.$socket.emit('sendMessage', this.chatMessage)
         this.$socket.emit('sendNickname', this.ownNickname)
-//        this.messages.push(this.nicknameKey + ' : ' + this.chatMessage)
+        this.messages.push(this.nicknameKey + ' : ' + this.chatMessage)
         this.chatMessage = ''
 
 //        console.log(this.nicknameKey) // 여긴 잘 찍히는데......
       }
     },
     computed: {
-        /* 값을 꺼내오아앙ㅇㅇ */
+        /* vuex 에 저장된 값을 꺼내온다 */
       passwordKeyConfig: function () {
         return this.$store.getters.getChannelPassword
       }

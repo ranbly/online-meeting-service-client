@@ -4,7 +4,8 @@ const state = {
   newChannelTitle: '',
   newChannelDesc: '',
   newChannelTag: '',
-  newChannelPassword: ''
+  newChannelPassword: '',
+  newChannel: [] // 배열로 넘겨보자
 }
 
 /* eslint-disable no-shadow */
@@ -23,6 +24,9 @@ const mutations = {
   },
   [types.SET_CHANNEL_PASSWORD] (state, data) {
     state.newChannelPassword = data
+  },
+  [types.SET_NEW_CHANNEL] (state, data) {
+    state.newChannel = data
   }
 }
 
