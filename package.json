@@ -2,7 +2,7 @@
   "name": "meet-me-by-drawing-client",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "GwonHyeok <me@ghyeok.io>",
+  "author": "uran",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",

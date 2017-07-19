@@ -121,6 +121,13 @@
                 </section>
             </div>
             <div class="columns padding-top-10">
+                <!--<div id="UploadBox" v-on:fileChosen="fileChosen">-->
+                    <!--<h2>파일 업로드 테스트</h2>-->
+                    <!--<span id='UploadArea'>-->
+                    <!--<label for="FileBox">Choose A File: </label><input type="file" id="FileBox"><br>-->
+                    <!--<label for="NameBox">Name: </label><input type="text" id="NameBox"><br>-->
+                    <!--<button type='button' id='UploadButton' class='Button' v-on:click="startUpload">업로드 테스트</button></span>-->
+                <!--</div>-->
                 <div class="left-box">
                     <canvas
                             v-on:mousedown="this.onMouseDown"
@@ -202,16 +209,15 @@
       },
 
       // 메세지 수신
-      receiveMessage: function (message, nicknameKey) {
-        this.messages.push(nicknameKey + ' : ' + message)
-        console.log(nicknameKey)
+      receiveMessage: function (message) {
+        console.log('recieve methods')
+        this.messages.push(message.nickname + ' : ' + message.msg)
       }
     },
     /**
      * 최초 실행하는 mounted. 변수선언
      */
     mounted: function () {
-      this.ownNickname = document.getElementById('own-nickname').innerHTML
       this.canvas = document.getElementById('channel_canvas')
       this.containerSection = document.getElementById('in-channel-section')
         /* canvas container */
@@ -224,7 +230,6 @@
       this.canvas.width = window.innerWidth
       this.canvas.height = window.innerHeight
       this.show('modal')
-//      this.receiveNickname()
     },
     data () {
       return {
@@ -244,15 +249,48 @@
         errorPassword: false,
         checkNull: false,
         list: [],
-        sharedState: main.state
+        sharedState: main.state,
+        selectedFile: '',
+        fileReader: ''
+//        name: '',
+//        imageData: ''
       }
     },
     methods: {
-//      receiveNickname () {
-//        this.nicknameKey.push()
-//        console.log('this')
-//        console.log('push nickname : ' + this.nicknameKey)
+//      fileChosen (event) {
+//        this.selectedFile = event.target.files[0]
+//        document.getElementById('NameBox').value = this.selectedFile.name
 //      },
+//
+//      startUpload () {
+//        // 파일 업로드 테스트용
+//        // 데이터 타입 정의를 해야될텐데..
+//        if (document.getElementById('FileBox').value !== '') {
+//          this.fileReader = new FileReader()
+//          console.log(this.selectedFile.type)
+//          this.name = document.getElementById('NameBox').value
+//          let content = '<span id="NameArea">Uploading' + this.selectedFile.name + 'as' + this.name + '</span>'
+//          content += '<span id="Uploaded"> - <span id="MB">0</span>/' + Math.round(this.selectedFile.size / 1048576) + 'MB</span>'
+//          document.getElementById('UploadArea').innerHTML = content
+//          this.fileReader.onload = function (event) {
+//            if (!event) {
+//              this.imageData = this.fileReader.content
+//            } else {
+//              this.imageData = event.target.result
+//            }
+//            this.$socket.emit('Upload', {'Name': name, 'Data': this.imageData})
+//          }
+//          this.$socket.emit('Start', {'Name': name, 'Size': this.selectedFile.size})
+//        } else {
+//          alert('please select a file :)')
+//        }
+//      },
+
+      receiveNickname () {
+        this.nicknameKey.push()
+        console.log('this')
+        console.log('push nickname : ' + this.nicknameKey)
+      },
 
       onFileChange (e) {
         const files = e.target.files || e.dataTransfer.files
@@ -325,7 +363,12 @@
         this.saveLatestDrawingData(x, y, colorCode, penSize)
 
         // Send Drawing Data
-        this.$socket.emit('drawing', {type: 'beginPath', position: {x, y}, size: penSize, color: colorCode})
+        this.$socket.emit('drawing', {
+          type: 'beginPath',
+          position: {x, y},
+          size: penSize,
+          color: colorCode
+        })
       },
 
       drawFromSocket (data) {
@@ -417,12 +460,13 @@
 
       sendChat () {
         if (this.chatMessage === '') return console.error('비어있음')
-        this.$socket.emit('sendMessage', this.chatMessage)
-        this.$socket.emit('sendNickname', this.ownNickname)
+        this.$socket.emit('sendMessage', {
+          nickname: this.nicknameKey,
+          msg: this.chatMessage
+        })
+        console.log('send nickname', this.nicknameKey, 'send msg', this.chatMessage)
         this.messages.push(this.nicknameKey + ' : ' + this.chatMessage)
         this.chatMessage = ''
-
-//        console.log(this.nicknameKey) // 여긴 잘 찍히는데......
       }
     },
     computed: {
