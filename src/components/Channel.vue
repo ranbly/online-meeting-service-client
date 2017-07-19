@@ -122,11 +122,11 @@
             </div>
             <div class="columns padding-top-10">
                 <!--<div id="UploadBox" v-on:fileChosen="fileChosen">-->
-                    <!--<h2>파일 업로드 테스트</h2>-->
-                    <!--<span id='UploadArea'>-->
-                    <!--<label for="FileBox">Choose A File: </label><input type="file" id="FileBox"><br>-->
-                    <!--<label for="NameBox">Name: </label><input type="text" id="NameBox"><br>-->
-                    <!--<button type='button' id='UploadButton' class='Button' v-on:click="startUpload">업로드 테스트</button></span>-->
+                <!--<h2>파일 업로드 테스트</h2>-->
+                <!--<span id='UploadArea'>-->
+                <!--<label for="FileBox">Choose A File: </label><input type="file" id="FileBox"><br>-->
+                <!--<label for="NameBox">Name: </label><input type="text" id="NameBox"><br>-->
+                <!--<button type='button' id='UploadButton' class='Button' v-on:click="startUpload">업로드 테스트</button></span>-->
                 <!--</div>-->
                 <div class="left-box">
                     <canvas
@@ -156,9 +156,11 @@
                                 <ul id="chat-log" class="chat-log">
                                     <li id="own-nickname" class="text-center">----- {{nicknameKey}}님이 입장하였습니다 -----
                                     </li>
-                                    <li v-for="message in this.messages" class="chat-message-ui text-right">
-                                        {{message}}
-                                    </li>
+                                    <div v-for="message in this.messages" class="chat-message-list block margin-bottom-0 text-right">
+                                        <li class="chat-message-ui inline-block">
+                                            {{message}}
+                                        </li>
+                                    </div>
                                 </ul>
                             </div>
 
@@ -210,7 +212,6 @@
 
       // 메세지 수신
       receiveMessage: function (message) {
-        console.log('recieve methods')
         this.messages.push(message.nickname + ' : ' + message.msg)
       }
     },
@@ -467,6 +468,8 @@
         console.log('send nickname', this.nicknameKey, 'send msg', this.chatMessage)
         this.messages.push(this.nicknameKey + ' : ' + this.chatMessage)
         this.chatMessage = ''
+
+        document.querySelector('.chat-message-list > li').classList.add('chat-message-ui-receive') // send버튼 최초로 눌렀을때 맨 위에만 바뀌고 있음
       }
     },
     computed: {
@@ -496,7 +499,6 @@
         background-color: #EAEAEA;
         bottom: 0;
         right: 0;
-        text-align: left;
         overflow: scroll;
 
         &-log {
@@ -520,6 +522,13 @@
             color: white;
             border-radius: 10px;
             margin-bottom: 5px;
+
+            // chat-message-ui-receive
+            &-receive {
+                background-color: white;
+                color: black;
+                text-align: right !important;
+            }
         }
     }
 
