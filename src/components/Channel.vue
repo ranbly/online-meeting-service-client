@@ -461,6 +461,8 @@
 
       sendChat () {
         if (this.chatMessage === '') return console.error('비어있음')
+
+        // 데이터를 보낼때 객체로 전송-
         this.$socket.emit('sendMessage', {
           nickname: this.nicknameKey,
           msg: this.chatMessage
