@@ -15,7 +15,7 @@
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
     "socket.io": "^2.0.1",
-    "vue": "^2.4.1",
+    "vue": "^2.3.4",
     "vue-js-modal": "^1.2.4",
     "vue-particles": "^1.0.9",
     "vue-router": "^2.3.1",

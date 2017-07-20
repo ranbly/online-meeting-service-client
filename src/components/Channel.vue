@@ -135,11 +135,12 @@
                             v-on:mouseup="this.onMouseUp"
                             id="channel_canvas"></canvas>
                 </div>
-                <div class="right-box">
-                    <div class="chat column padding-0">
+                <div class="right-box" id="chatting-box">
+                    <div class="chat-nav text-left padding-left-10 h5">채팅</div>
+                    <div id="chat" class="chat column padding-0">
                         <div style="padding: 0!important;" class="padding-0">
                             <div class="inline-block">
-                                <div class="padding-20">
+                                <div class="padding-20 chat-online-profile">
                                     <img class="width-50" src="../assets/ic_user.png"/>
                                     <div class="inline-block vertical-align-top padding-left-10 padding-top-5">
                                         <span class="NGB">{{nicknameKey}}</span>
@@ -151,12 +152,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="padding-10">
+                        <div class="padding-10 chat-list-background">
                             <div class="chat-box">
                                 <ul id="chat-log" class="chat-log">
                                     <li id="own-nickname" class="text-center">----- {{nicknameKey}}님이 입장하였습니다 -----
                                     </li>
-                                    <div v-for="message in this.messages" class="chat-message-list block margin-bottom-0 text-right">
+                                    <div v-for="message in this.messages"
+                                         class="chat-message-list block margin-bottom-0 text-right">
                                         <li class="chat-message-ui inline-block">
                                             {{message}}
                                         </li>
@@ -213,6 +215,7 @@
       // 메세지 수신
       receiveMessage: function (message) {
         this.messages.push(message.nickname + ' : ' + message.msg)
+        document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight
       }
     },
     /**
@@ -252,7 +255,8 @@
         list: [],
         sharedState: main.state,
         selectedFile: '',
-        fileReader: ''
+        fileReader: '',
+        chatDiv: ''
 //        name: '',
 //        imageData: ''
       }
@@ -472,6 +476,9 @@
         this.chatMessage = ''
 
         document.querySelector('.chat-message-list > li').classList.add('chat-message-ui-receive') // send버튼 최초로 눌렀을때 맨 위에만 바뀌고 있음
+
+        // 메세지 전송시 스크롤 자동 하단
+        document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight
       }
     },
     computed: {
@@ -502,6 +509,7 @@
         bottom: 0;
         right: 0;
         overflow: scroll;
+        margin-bottom: 55px;
 
         &-log {
             width: 95%;
@@ -531,6 +539,14 @@
                 color: black;
                 text-align: right !important;
             }
+        }
+
+        &-nav {
+            display: none;
+        }
+
+        &-message-list:last-child {
+            padding-bottom: 50px;
         }
     }
 
@@ -573,5 +589,44 @@
         height: 50px;
         display: none;
         clip: rect(0, 0, 0, 0);
+    }
+
+    @media (max-width: 1210px) {
+
+        // mobile chatting list
+        #chatting-box {
+            float: none !important;
+            right: 0 !important;
+            position: fixed !important;
+            width: 100%;
+            bottom: 0;
+        }
+
+        #channel_canvas {
+            margin-bottom: 150px;
+        }
+
+        .chat-input-form {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .chat-online-profile {
+            display: none;
+        }
+
+        .chat-list-background {
+            max-height: 300px
+        }
+
+        // mobile chat navigation
+        .chat-nav {
+            display: block;
+            width: 100%;
+            height: 25px;
+            background-color: white;
+            border: 2px solid black;
+        }
     }
 </style>
