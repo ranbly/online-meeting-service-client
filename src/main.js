@@ -8,11 +8,17 @@ import router from './router'
 import 'bulma/css/bulma.css'
 import vmodal from 'vue-js-modal'
 import VueParticles from 'vue-particles'
+import moment from 'moment'
 
 Vue.use(Vuex)
 Vue.config.productionTip = false
 Vue.use(vmodal)
 Vue.use(VueParticles)
+
+// date filtering library 추가 (usage: | )
+Vue.filter('timeAgo', function (value) {
+  return moment(value).format('LLLL')
+})
 
 /* eslint-disable no-new */
 new Vue({

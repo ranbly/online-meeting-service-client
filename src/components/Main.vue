@@ -72,7 +72,7 @@
                                         <a>{{channel.tag1}} </a>
                                         <a>{{channel.tag1}}</a>
                                         <br>
-                                        <small>{{ Date() }}</small>
+                                        <small>{{ Date.now() | timeAgo }}</small>
                                     </div>
                                 </div>
                             </div>

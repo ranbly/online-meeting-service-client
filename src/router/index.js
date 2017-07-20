@@ -13,7 +13,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/channel',
+      path: '/channel/:key',
       name: 'live_drawing_room',
       component: Channel
     },
