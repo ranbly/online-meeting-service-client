@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9c5087d5-9388-4d91-8421-229bb8609e05" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assets/common.scss" afterPath="$PROJECT_DIR$/src/assets/common.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Channel.vue" afterPath="$PROJECT_DIR$/src/components/Channel.vue" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -18,7 +17,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6043894">
+    <splitter split-orientation="horizontal" split-proportion="0.44951415">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
           <file leaf-file-name="firebase.json" pinned="false" current-in-tab="false">
@@ -54,8 +53,8 @@
           <file leaf-file-name="Channel.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/components/Channel.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="298">
-                  <caret line="479" column="28" lean-forward="true" selection-start-line="479" selection-start-column="28" selection-end-line="479" selection-end-column="28" />
+                <state relative-caret-position="544">
+                  <caret line="491" column="7" lean-forward="true" selection-start-line="491" selection-start-column="7" selection-end-line="491" selection-end-column="7" />
                   <folding />
                 </state>
               </provider>
@@ -65,11 +64,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-          <file leaf-file-name="Channel.vue" pinned="false" current-in-tab="false">
+          <file leaf-file-name="Channel.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/components/Channel.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="429">
-                  <caret line="474" column="37" lean-forward="false" selection-start-line="474" selection-start-column="37" selection-end-line="474" selection-end-column="37" />
+                <state relative-caret-position="83">
+                  <caret line="207" column="42" lean-forward="true" selection-start-line="207" selection-start-column="42" selection-end-line="207" selection-end-column="42" />
                   <folding />
                 </state>
               </provider>
@@ -87,11 +86,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="common.scss" pinned="false" current-in-tab="true">
+          <file leaf-file-name="common.scss" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/assets/common.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="378">
-                  <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+                <state relative-caret-position="295">
+                  <caret line="136" column="10" lean-forward="false" selection-start-line="136" selection-start-column="1" selection-end-line="136" selection-end-column="10" />
                   <folding />
                 </state>
               </provider>
@@ -135,9 +134,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>socek</find>
-      <find>soce</find>
-      <find>soc</find>
       <find>fileReader</find>
       <find>receiveNickname</find>
       <find>sendMessage</find>
@@ -149,11 +145,7 @@
       <find>receiveChat</find>
       <find>chat-message</find>
       <find>chat-message-list</find>
-      <find>text-left</find>
       <find>receiveMessage</find>
-      <find>receive</find>
-      <find>send</find>
-      <find>chat-message-ui</find>
       <find>l</find>
       <find>local</find>
       <find>localhost</find>
@@ -165,6 +157,13 @@
       <find>chatDiv</find>
       <find>chat</find>
       <find>자동 스크롤</find>
+      <find>chat-message-ui-receive</find>
+      <find>query</find>
+      <find>text-left</find>
+      <find>sendChat</find>
+      <find>receive</find>
+      <find>chat-message-ui</find>
+      <find>send</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src</dir>
@@ -236,9 +235,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="178" />
-    <option name="y" value="155" />
-    <option name="width" value="2051" />
+    <option name="x" value="187" />
+    <option name="y" value="176" />
+    <option name="width" value="2378" />
     <option name="height" value="1263" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -566,7 +565,7 @@
       <workItem from="1500509634487" duration="1542000" />
       <workItem from="1500511658109" duration="2686000" />
       <workItem from="1500514506181" duration="500000" />
-      <workItem from="1500515101768" duration="8205000" />
+      <workItem from="1500515101768" duration="13326000" />
     </task>
     <task id="LOCAL-00001" summary="main 페이지 채널 추가기능 추가, channel 페이지 펜 굵기 수정기능 추가, chattinng box css 수정">
       <created>1499674677586</created>
@@ -757,11 +756,18 @@
       <option name="project" value="LOCAL" />
       <updated>1500521492632</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="채팅내리면 하단으로 자동 스크롤 기능 / channel 반응형">
+      <created>1500528237897</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1500528237897</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="226627000" />
+    <option name="totallyTimeSpent" value="231748000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -773,10 +779,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="178" y="155" width="2051" height="1263" extended-state="0" />
+    <frame x="187" y="176" width="2378" height="1263" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11105553" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12381771" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32929993" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13855422" sideWeight="0.5024665" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -784,7 +790,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24941176" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1443388" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14606741" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -825,7 +831,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="main 페이지 채널 추가기능 추가, channel 페이지 펜 굵기 수정기능 추가, chattinng box css 수정" />
     <MESSAGE value="modal 창 띄우기" />
     <MESSAGE value="modal 디자인 수정, 패스워드 기능 prototype 제작중" />
     <MESSAGE value="channel 추가하기 modal 미적용 기능 구현 (tag 여러개 추가 미적용)" />
@@ -850,7 +855,8 @@
     <MESSAGE value="채팅 수신시 chat desgin class 바뀌는거 적용 중" />
     <MESSAGE value="firebase 연동" />
     <MESSAGE value="firebase 연동 및 vue-compile version 업데이트, chat 자동스크롤" />
-    <option name="LAST_COMMIT_MESSAGE" value="firebase 연동 및 vue-compile version 업데이트, chat 자동스크롤" />
+    <MESSAGE value="채팅내리면 하단으로 자동 스크롤 기능 / channel 반응형" />
+    <option name="LAST_COMMIT_MESSAGE" value="채팅내리면 하단으로 자동 스크롤 기능 / channel 반응형" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -979,6 +985,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/common.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="136" column="10" lean-forward="false" selection-start-line="136" selection-start-column="1" selection-end-line="136" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="609">
@@ -989,18 +1003,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/common.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Channel.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="479" column="28" lean-forward="true" selection-start-line="479" selection-start-column="28" selection-end-line="479" selection-end-column="28" />
+        <state relative-caret-position="83">
+          <caret line="207" column="42" lean-forward="true" selection-start-line="207" selection-start-column="42" selection-end-line="207" selection-end-column="42" />
           <folding />
         </state>
       </provider>

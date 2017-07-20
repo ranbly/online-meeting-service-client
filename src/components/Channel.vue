@@ -214,8 +214,23 @@
 
       // 메세지 수신
       receiveMessage: function (message) {
+        // 반복되는 li에 class 추가하기
         this.messages.push(message.nickname + ' : ' + message.msg)
         document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight
+        console.log('receive message')
+        let messageReceivedDiv = document.querySelectorAll('.chat-message-list > li')
+        for (let div of messageReceivedDiv) {
+          div.classList.add('chat-message-ui-receive')
+          let acount = 1
+          console.log('messageReceivedDiv', acount++)
+        }
+        console.log('class add')
+        let messageReceivedLeft = document.querySelectorAll('.chat-message')
+        for (let div of messageReceivedLeft) {
+          div.style.textAlign = 'left !important'
+          let acount = 1
+          console.log('received-left', acount++)
+        }
       }
     },
     /**
@@ -466,17 +481,12 @@
       sendChat () {
         if (this.chatMessage === '') return console.error('비어있음')
 
-        // 데이터를 보낼때 객체로 전송-
+        // 데이터를 보낼때 객체로 전송
         this.$socket.emit('sendMessage', {
           nickname: this.nicknameKey,
           msg: this.chatMessage
         })
-        console.log('send nickname', this.nicknameKey, 'send msg', this.chatMessage)
-        this.messages.push(this.nicknameKey + ' : ' + this.chatMessage)
         this.chatMessage = ''
-
-        document.querySelector('.chat-message-list > li').classList.add('chat-message-ui-receive') // send버튼 최초로 눌렀을때 맨 위에만 바뀌고 있음
-
         // 메세지 전송시 스크롤 자동 하단
         document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight
       }
@@ -520,7 +530,7 @@
             position: fixed;
             padding: 10px;
             background-color: #D5D5D5;
-            bottom: 1%;
+            bottom: 0;
             width: 23%;
         }
         &-box {
@@ -537,8 +547,12 @@
             &-receive {
                 background-color: white;
                 color: black;
-                text-align: right !important;
+                text-align: left !important;
             }
+        }
+
+        &-list-background {
+            max-height: 300px
         }
 
         &-nav {
@@ -610,6 +624,7 @@
     .chat-list-background {
         max-height: 300px
     }
+
     @media (max-width: 1210px) {
 
         // mobile chatting list
