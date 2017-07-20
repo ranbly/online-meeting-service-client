@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9c5087d5-9388-4d91-8421-229bb8609e05" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assets/common.scss" afterPath="$PROJECT_DIR$/src/assets/common.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Channel.vue" afterPath="$PROJECT_DIR$/src/components/Channel.vue" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -18,7 +18,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.52110094">
+    <splitter split-orientation="horizontal" split-proportion="0.6043894">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
           <file leaf-file-name="firebase.json" pinned="false" current-in-tab="false">
@@ -54,8 +54,8 @@
           <file leaf-file-name="Channel.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/components/Channel.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="359">
-                  <caret line="140" column="65" lean-forward="false" selection-start-line="140" selection-start-column="65" selection-end-line="140" selection-end-column="65" />
+                <state relative-caret-position="298">
+                  <caret line="479" column="28" lean-forward="true" selection-start-line="479" selection-start-column="28" selection-end-line="479" selection-end-column="28" />
                   <folding />
                 </state>
               </provider>
@@ -65,11 +65,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-          <file leaf-file-name="Channel.vue" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Channel.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/components/Channel.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="339">
-                  <caret line="481" column="7" lean-forward="true" selection-start-line="481" selection-start-column="7" selection-end-line="481" selection-end-column="7" />
+                <state relative-caret-position="429">
+                  <caret line="474" column="37" lean-forward="false" selection-start-line="474" selection-start-column="37" selection-end-line="474" selection-end-column="37" />
                   <folding />
                 </state>
               </provider>
@@ -78,11 +78,21 @@
           <file leaf-file-name="App.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/App.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="294">
-                  <caret line="14" column="44" lean-forward="true" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
+                <state relative-caret-position="609">
+                  <caret line="29" column="27" lean-forward="false" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
                   <folding>
                     <element signature="e#188#220#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="common.scss" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/assets/common.scss">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="378">
+                  <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -125,7 +135,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>socekt</find>
       <find>socek</find>
       <find>soce</find>
       <find>soc</find>
@@ -155,6 +164,7 @@
       <find>chatting-box</find>
       <find>chatDiv</find>
       <find>chat</find>
+      <find>자동 스크롤</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src</dir>
@@ -197,12 +207,12 @@
         <option value="$PROJECT_DIR$/src/App.vue" />
         <option value="$PROJECT_DIR$/firebase-debug.log" />
         <option value="$PROJECT_DIR$/src/components/Main.vue" />
-        <option value="$PROJECT_DIR$/src/assets/common.scss" />
         <option value="$PROJECT_DIR$/src/router/index.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/firebase.json" />
         <option value="$PROJECT_DIR$/dist/index.html" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/assets/common.scss" />
         <option value="$PROJECT_DIR$/src/components/Channel.vue" />
       </list>
     </option>
@@ -226,8 +236,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="255" />
-    <option name="y" value="23" />
+    <option name="x" value="178" />
+    <option name="y" value="155" />
     <option name="width" value="2051" />
     <option name="height" value="1263" />
   </component>
@@ -556,7 +566,7 @@
       <workItem from="1500509634487" duration="1542000" />
       <workItem from="1500511658109" duration="2686000" />
       <workItem from="1500514506181" duration="500000" />
-      <workItem from="1500515101768" duration="6112000" />
+      <workItem from="1500515101768" duration="8205000" />
     </task>
     <task id="LOCAL-00001" summary="main 페이지 채널 추가기능 추가, channel 페이지 펜 굵기 수정기능 추가, chattinng box css 수정">
       <created>1499674677586</created>
@@ -740,11 +750,18 @@
       <option name="project" value="LOCAL" />
       <updated>1500515009492</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="firebase 연동 및 vue-compile version 업데이트, chat 자동스크롤">
+      <created>1500521492632</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1500521492632</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="224534000" />
+    <option name="totallyTimeSpent" value="226627000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -756,10 +773,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="255" y="23" width="2051" height="1263" extended-state="0" />
+    <frame x="178" y="155" width="2051" height="1263" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.043521762" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11105553" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32929993" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13855422" sideWeight="0.5024665" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -832,7 +849,8 @@
     <MESSAGE value="channel chatting nickname push" />
     <MESSAGE value="채팅 수신시 chat desgin class 바뀌는거 적용 중" />
     <MESSAGE value="firebase 연동" />
-    <option name="LAST_COMMIT_MESSAGE" value="firebase 연동" />
+    <MESSAGE value="firebase 연동 및 vue-compile version 업데이트, chat 자동스크롤" />
+    <option name="LAST_COMMIT_MESSAGE" value="firebase 연동 및 vue-compile version 업데이트, chat 자동스크롤" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -896,7 +914,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/vuex/getters.js" />
-    <entry file="file://$PROJECT_DIR$/src/assets/common.scss" />
     <entry file="file://$PROJECT_DIR$/src/vuex/modules/index.js" />
     <entry file="file://$PROJECT_DIR$/src/components/Main.vue" />
     <entry file="file://$PROJECT_DIR$/src/vuex/actions.js" />
@@ -964,18 +981,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="14" column="44" lean-forward="true" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
+        <state relative-caret-position="609">
+          <caret line="29" column="27" lean-forward="false" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
           <folding>
             <element signature="e#188#220#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/common.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Channel.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="481" column="7" lean-forward="true" selection-start-line="481" selection-start-column="7" selection-end-line="481" selection-end-column="7" />
+        <state relative-caret-position="298">
+          <caret line="479" column="28" lean-forward="true" selection-start-line="479" selection-start-column="28" selection-end-line="479" selection-end-column="28" />
           <folding />
         </state>
       </provider>

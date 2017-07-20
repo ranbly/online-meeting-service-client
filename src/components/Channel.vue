@@ -591,6 +591,25 @@
         clip: rect(0, 0, 0, 0);
     }
 
+
+    // chat
+
+    .chat-input-from {
+        position: fixed;
+        bottom: 0;
+    }
+
+    .chat-input-form {
+        position: fixed;
+    }
+
+    .chat-online-profile {
+        display: none;
+    }
+
+    .chat-list-background {
+        max-height: 300px
+    }
     @media (max-width: 1210px) {
 
         // mobile chatting list

@@ -1,5 +1,8 @@
 @import "variable.scss";
 
+html {
+  overflow-y: hidden;
+}
 input {
   margin: 0 !important;
 }
