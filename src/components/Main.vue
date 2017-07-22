@@ -49,36 +49,37 @@
         <router-link v-bind:to="'/channel'">방금 방문한 채널로 이동하기</router-link>
         <div class="margin-top-20">
           <div class="columns is-multiline">
-            <div class="channel-div column is-6" v-for="channel in this.channels">
-              <div class="margin-bottom-5 card height-180">
-                <div class="channel-card card-content cursor">
-                  <div class="media">
-                    <div class="media-left">
-                      <figure class="image is-48x48">
-                        <img src="http://bulma.io/images/placeholders/96x96.png" alt="Image">
-                      </figure>
-                    </div>
-                    <div class="media-content">
-                      <p class="title is-4">{{channel.title}}</p>
-                      <p class="subtitle is-6">@yourName</p>
-                    </div>
-                  </div>
 
-                  <div class="content">
-                    <p style="max-height: 100px" class="channel-list-content margin-bottom-0">
-                      {{channel.content}}
-                    </p>
-                    <a>{{channel.tag1}} </a>
-                    <a>{{channel.tag1}} </a>
-                    <a>{{channel.tag1}}</a>
-                    <br>
-                    <small>{{ Date.now() | timeAgo }}</small>
+            <div class="channel-div column is-6" v-for="channel in channels">
+              <router-link :to="`/channel/${channel['.key']}`">
+                <div class="margin-bottom-5 card height-180">
+                  <div class="channel-card card-content cursor">
+                    <div class="media">
+                      <div class="media-left">
+                        <figure class="image is-48x48">
+                          <img src="http://bulma.io/images/placeholders/96x96.png" alt="Image">
+                        </figure>
+                      </div>
+                      <div class="media-content">
+                        <p class="title is-4">{{channel.title}}</p>
+                        <p class="subtitle is-6">@yourName</p>
+                      </div>
+                    </div>
+
+                    <div class="content">
+                      <p style="max-height: 100px" class="channel-list-content margin-bottom-0">
+                        {{channel.content}}
+                      </p>
+                      <a>{{channel.tag1}} </a>
+                      <a>{{channel.tag1}} </a>
+                      <a>{{channel.tag1}}</a>
+                      <br>
+                      <small>{{ Date.now() | timeAgo }}</small>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </router-link>
             </div>
-
-
             <div class="column is-6 make-channel">
               <div class="margin-bottom-5 card">
                 <div class="card-content make-channel channel-card cursor">
@@ -186,21 +187,26 @@
   </div>
 </template>
 <script>
+  import { db } from '../firebase'
+
   export default {
     name: 'main',
+    firebase: {
+      channels: db.ref('channels')
+    },
     data: function () {
       return {
         addChannelTitle: '',
         addChannelContent: '',
         addChannelTag1: '',
-        channels: [
-          {
-            title: '당신의 첫번째 채널입니다!',
-            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris. ' +
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            tag1: '#responsive'
-          }
-        ],
+//        channels: [
+//          {
+//            title: '당신의 첫번째 채널입니다!',
+//            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris. ' +
+//            'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+//            tag1: '#responsive'
+//          }
+//        ],
         passwordKey: ''
       }
     },
@@ -217,14 +223,23 @@
         const newChannelTitle = this.addChannelTitle.trim()
         const newChannelContent = this.addChannelContent.trim()
         const newChannelTag1 = this.addChannelTag1.trim()
+        const newPassword = this.passwordKey
 
-        this.channels.push({
+        // db add
+        this.$firebaseRefs.channels.push({
           title: newChannelTitle,
           content: newChannelContent,
-          tag1: '#' + newChannelTag1,
-
-          done: false
+          tag: '#' + newChannelTag1,
+          password: newPassword
         })
+
+//        this.channels.push({
+//          title: newChannelTitle,
+//          content: newChannelContent,
+//          tag1: '#' + newChannelTag1,
+//
+//          done: false
+//        })
 
         // 입력 후 변수 초기화
         this.addChannelTitle = ''

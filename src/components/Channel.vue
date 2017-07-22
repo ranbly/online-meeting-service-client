@@ -192,10 +192,25 @@
 </template>
 
 <script>
+  import { db } from '../firebase'
   import main from '../components/Main.vue'
 
   export default {
     name: 'live_drawing_room',
+    beforeMount: function () {
+      const channelKey = this.$route.params.channel_id
+      this.$bindAsObject('channel', this.$firebaseRefs.channels.child(channelKey))
+    },
+    firebase: {
+      channels: db.ref('channels')
+    },
+    watch: {
+      channel: function () {
+        if (!this.isLoggedIn) {
+          this.show('modal')
+        }
+      }
+    },
     sockets: {
       connect: function () {
         console.log('connected')
@@ -239,7 +254,6 @@
       this.canvasContext.lineWidth = 5
       this.canvas.width = window.innerWidth
       this.canvas.height = window.innerHeight
-      this.show('modal')
     },
     data () {
       return {
@@ -262,7 +276,9 @@
         sharedState: main.state,
         selectedFile: '',
         fileReader: '',
-        chatDiv: ''
+        chatDiv: '',
+        isLoggedIn: false,
+        channel: null
 //        name: '',
 //        imageData: ''
       }
@@ -321,15 +337,14 @@
 
       show (modalName) {
         this.$modal.show(modalName)
-        console.log('this is pw key pass !!!!! : ' + this.passwordKeyConfig)
       },
 
       hide (modalName) {
         this.$modal.hide(modalName)
       },
 
-      configPassword (passwordKey) {
-        if (this.passwordKey === this.passwordKeyConfig) {
+      configPassword () {
+        if (this.passwordKey === this.channel.password) {
           this.errorPassword = false
           this.hide('modal')
 
@@ -339,8 +354,6 @@
           this.errorPassword = true
           this.passwordKey = ''
         }
-
-        console.log('pwd', this.passwordKeyConfig)
       },
 
       logInChannel () {
@@ -489,9 +502,9 @@
     },
     computed: {
       /* vuex 에 저장된 값을 꺼내온다 */
-      passwordKeyConfig: function () {
-        return this.$store.getters.getChannelPassword
-      }
+//      passwordKeyConfig: function () {
+//        return this.$store.getters.getChannelPassword
+//      }
     }
   }
 </script>
