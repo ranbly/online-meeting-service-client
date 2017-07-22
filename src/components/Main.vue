@@ -3,8 +3,9 @@
     <div class="container">
       <div class="padding-bottom-50 text-left">
         <div class="relative">
-          <section class="hero is-primary absolute padding-right-45" style="
-                                    border: 1px white solid; left:32%; top:30%; z-index: 1;">
+          <section
+            style="border: 1px white solid; left:32%; top:30%; z-index: 1;"
+            id="header-section" class="hero is-primary absolute padding-right-45" >
             <div class="hero-body padding-left-50 text-center">
               <h1 class="title h1 NGB">
                 실시간 온라인 회의 보조 서비스
@@ -48,12 +49,12 @@
       </div>
       <div>
         <router-link v-bind:to="'/channel'">방금 방문한 채널로 이동하기</router-link>
-        <div class="margin-top-20">
+        <div class="margin-top-50">
           <div class="columns is-multiline">
 
             <div class="channel-div column is-6" v-for="channel in channels">
               <router-link :to="`/channel/${channel['.key']}`">
-                <div class="margin-bottom-5 card height-180">
+                <div class="card-section margin-bottom-5 card height-180">
                   <div class="channel-card card-content cursor">
                     <div class="media">
                       <div class="media-left">
@@ -82,7 +83,7 @@
               </router-link>
             </div>
             <div class="column is-6 make-channel">
-              <div class="margin-bottom-5 card">
+              <div class="card-section margin-bottom-5 card">
                 <div class="card-content make-channel channel-card cursor">
                   <div v-on:click="show" class="content">
                     <p class="h1 padding-top-35 primary-color">+ 채널 생성하기</p>
@@ -320,6 +321,20 @@
 
       &-triangle {
       }
+    }
+
+    #header-section {
+      text-align: left !important;
+      left: 0 !important;
+      top: 0 !important;
+    }
+  }
+
+  @media (max-width: 769px) {
+    .card-section {
+      margin: 0 25px 25px 25px;
+
+      & > div {}
     }
   }
 </style>
