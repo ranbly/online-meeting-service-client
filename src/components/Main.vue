@@ -13,7 +13,8 @@
                 Meet-me-by-drawing
               </h2>
               <div class="padding-top-20">
-                <a class="button is-outlined is-medium">채널 만들기</a>
+                <a v-on:click="show"
+                   class="button is-outlined is-medium">채널 만들기</a>
               </div>
             </div>
           </section>
@@ -70,11 +71,11 @@
                       <p style="max-height: 100px" class="channel-list-content margin-bottom-0">
                         {{channel.content}}
                       </p>
-                      <a>{{channel.tag1}} </a>
-                      <a>{{channel.tag1}} </a>
-                      <a>{{channel.tag1}}</a>
+                      <a>{{channel.tag}} </a>
+                      <a>{{channel.tag}} </a>
+                      <a>{{channel.tag}}</a>
                       <br>
-                      <small>{{ Date.now() | timeAgo }}</small>
+                      <small>{{channel.time | timeAgo }}</small>
                     </div>
                   </div>
                 </div>
@@ -93,7 +94,7 @@
                          :height="550">
                     <div class="padding-30">
                       <div>
-                        <p class="h1 NGB text-center padding-top-20">새로운 채널 만들기</p>
+                        <p v-on:click="show"class="h1 NGB text-center padding-top-20">새로운 채널 만들기</p>
                         <p class="h4 text-center padding-top-10">채널을 만들어 링크를 공유해보세요</p>
                       </div>
                       <div style="margin-left: -90px"
@@ -207,7 +208,8 @@
 //            tag1: '#responsive'
 //          }
 //        ],
-        passwordKey: ''
+        passwordKey: '',
+        writeTime: ''
       }
     },
     methods: {
@@ -225,12 +227,13 @@
         const newChannelTag1 = this.addChannelTag1.trim()
         const newPassword = this.passwordKey
 
-        // db add
+        // firebase database 에 추가(저장
         this.$firebaseRefs.channels.push({
           title: newChannelTitle,
           content: newChannelContent,
           tag: '#' + newChannelTag1,
-          password: newPassword
+          password: newPassword,
+          time: Date.now()
         })
 
 //        this.channels.push({
@@ -300,9 +303,10 @@
     top: -35%;
   }
 
-  //channel-card animation
-  .channel-card {
+  // card animation
+  .card {
     transition: box-shadow 400ms cubic-bezier(.2, 0, .7, 1), transform 200ms cubic-bezier(.2, 0, .7, 1); /* 여기서 속도를 지정*/
+
     &:hover { /* hover 시 속성 이벤트 */
       box-shadow: 0 0 1px 5px rgba(#00d1b2, 0.4),
       0 0 1px 10px rgba(#00d1b2, 0.1),
