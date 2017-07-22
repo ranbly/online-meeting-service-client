@@ -4,10 +4,6 @@ import Channel from '@/components/Channel'
 import Main from '@/components/Main'
 import About from '@/components/About'
 
-import VueSocketio from 'vue-socket.io'
-
-Vue.use(VueSocketio, 'http://localhost:4000')
-
 Vue.use(Router)
 
 export default new Router({
