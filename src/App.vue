@@ -1,10 +1,10 @@
 <!-- 최상위 컴포넌트 -->
 <template>
-    <div id="app">
-        <app-nav></app-nav>
-        <router-view></router-view>
-        <!--<app-footer></app-footer>-->
-    </div>
+  <div id="app">
+    <app-nav></app-nav>
+    <router-view></router-view>
+    <!--<app-footer></app-footer>-->
+  </div>
 </template>
 
 <script>
@@ -27,5 +27,5 @@
 </script>
 
 <style lang="scss">
-    @import "assets/common.scss";
+  @import "assets/common.scss";
 </style>

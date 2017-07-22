@@ -3,6 +3,7 @@
 html {
   overflow-y: hidden;
 }
+
 input {
   margin: 0 !important;
 }
@@ -215,12 +216,10 @@ input {
   color: $color-red;
 }
 
-
 //text-style {
 .text-underline {
   text-decoration: underline;
 }
-
 
 //position
 .absolute {
