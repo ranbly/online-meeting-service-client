@@ -2,8 +2,8 @@
 > Services that support online meetings in real time.
 >
 > Client : Bulma css framework<br>
->          Vue.js Javascript framework (Socket I.O -> realtime base )
-> Database : Firebase with Google, vueFire
+>          Vue.js Javascript framework (Socket I.O -> realtime base)<br>
+> Database : Firebase with Google, vueFire<br>
 > Server : Node.js
 
 ## Build Setup
