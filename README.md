@@ -1,7 +1,7 @@
 # Online-Meeting-Service
 > Services that support online meetings in real time.
 >
-> Client : Bulma css framework
+> Client : Bulma css framework<br>
 >          Vue.js Javascript framework (Socket I.O -> realtime base )
 > Database : Firebase with Google, vueFire
 > Server : Node.js
