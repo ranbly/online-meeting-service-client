@@ -238,3 +238,18 @@ input {
 .cursor {
   cursor: pointer;
 }
+
+/* media query */
+
+.tablet-size {
+  @media (max-width: $tablet-size) {
+
+  }
+}
+
+.mobile-size {
+  @media (max-width: $mobile-size) {
+
+  }
+}
+

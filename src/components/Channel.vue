@@ -79,7 +79,7 @@
                 </router-link>
               </div>
               <div class="column is-4">
-                <button class="button" v-on:click="this.clear">그림 지우기</button>
+                <button class="button margin-bottom-5" v-on:click="this.clear">그림 지우기</button>
                 <button class="button" v-on:click="changeColor('#FFFFFF')"></button>
                 <button class="button is-danger" v-on:click="changeColor('#ff2b56')"></button>
                 <button class="button is-warning" v-on:click="changeColor('#ffdb4a')"></button>
@@ -112,7 +112,7 @@
 
                   <label for="fileUpload"><span class="icon margin-right-10 margin-left-5">
                                         <i class="fa fa-picture-o" aria-hidden="true"></i>
-                                    </span>이미지 삽입하기</label>
+                                    </span>파일추가</label>
                   <input v-on:change="onFileChange" type="file" id="fileUpload"/>
                 </div>
               </div>
@@ -633,7 +633,7 @@
     max-height: 300px
   }
 
-  @media (max-width: 1210px) {
+  @media (max-width: $tablet-size) {
 
     // mobile chatting list
     #chatting-box {

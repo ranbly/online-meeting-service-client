@@ -109,8 +109,8 @@
                               <p class="control is-expanded has-icons-left">
                                 <input v-model="addChannelTitle" class="input"
                                        type="text" placeholder="채널의 이름을 알려주세요">
-                                <span class="icon is-small is-left"><i
-                                  class="fa fa-user"></i></span>
+                                <span class="icon is-small is-left">
+                                  <i class="fa fa-file-text" aria-hidden="true"></i></span>
                               </p>
                             </div>
                           </div>
@@ -125,8 +125,7 @@
                               <p class="control is-expanded has-icons-left">
                                 <input v-model="addChannelContent" class="input"
                                        type="text" placeholder="어떤 채널인지 간단히 설명해주세요">
-                                <span class="icon is-small is-left"><i
-                                  class="fa fa-user"></i></span>
+                                <span class="icon is-small is-left"><i class="fa fa-code" aria-hidden="true"></i></span>
                               </p>
                             </div>
                           </div>
@@ -141,8 +140,8 @@
                               <p class="control is-expanded has-icons-left">
                                 <input v-model="addChannelTag1" class="input"
                                        type="text" placeholder="채널을 나타내는 태그를 적어주세요">
-                                <span class="icon is-small is-left"><i
-                                  class="fa fa-user"></i></span>
+                                <span class="icon is-small is-left">
+                                  <i class="fa fa-tags" aria-hidden="true"></i></span>
                               </p>
                             </div>
                           </div>
@@ -185,6 +184,8 @@
           </div>
         </div>
       </div>
+
+
     </div>
   </div>
 </template>
@@ -315,7 +316,7 @@
     }
   }
 
-  @media (max-width: 1210px) {
+  @media (max-width: $tablet-size) {
     #main-tooltip {
       display: none;
 
@@ -324,17 +325,22 @@
     }
 
     #header-section {
-      text-align: left !important;
       left: 0 !important;
       top: 0 !important;
+      border: none !important;
+
+      & > .hero-body {
+        text-align: left !important;
+      }
     }
   }
 
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-size) {
     .card-section {
       margin: 0 25px 25px 25px;
 
-      & > div {}
+      & > div {
+      }
     }
   }
 </style>

@@ -8,6 +8,10 @@ $brand-primary-darken: darken(#00d1b2, 100%) !default; // #337ab7
 $color-red: #E91E63 !default;
 $brand-black: #444 !default;
 
+/* media query */
+$tablet-size: 1210px;
+$mobile-size: 796px;
+
 //sample
 .primary-color {
   color: $brand-primary;
